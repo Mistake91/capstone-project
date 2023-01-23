@@ -6,7 +6,7 @@ import {
   Workstation3,
   WorkstationDiv,
   Character,
-} from "./homeStyles";
+} from "../../../components/homeStyles";
 
 export default function Home() {
   const [charClass, setCharClass] = useState("");
