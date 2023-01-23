@@ -1,33 +1,13 @@
 import styled from "styled-components";
 
-export const Workstation1 = styled.button`
+export const Workstation = styled.button`
   width: 75px;
   height: 50px;
   border: 2px dashed black;
   border-radius: 25px;
   background-color: transparent;
-  grid-row: 9;
-  grid-column: 3;
-`;
-
-export const Workstation2 = styled.button`
-  width: 75px;
-  height: 50px;
-  border: 2px dashed black;
-  border-radius: 25px;
-  background-color: transparent;
-  grid-row: 9;
-  grid-column: 4;
-`;
-
-export const Workstation3 = styled.button`
-  width: 75px;
-  height: 50px;
-  border: 2px dashed black;
-  border-radius: 25px;
-  background-color: transparent;
-  grid-row: 7;
-  grid-column: 3;
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
 `;
 
 export const WorkstationDiv = styled.div`

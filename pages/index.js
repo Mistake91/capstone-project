@@ -1,28 +1,30 @@
 import { useState } from "react";
 
 import {
-  Workstation1,
-  Workstation2,
-  Workstation3,
+  Workstation,
   WorkstationDiv,
   Character,
 } from "../components/homeStyles";
 
 export default function HomePage() {
-  const [row, setRow] = useState(9);
-  const [column, setColumn] = useState(2);
+  const [characterPosition, setCharacterPositon] = useState({
+    row: 9,
+    column: 2,
+  });
 
   return (
     <WorkstationDiv>
-      <Character row={row} column={column} />
-      <Workstation1 onClick={() => positionHandler(9, 3)} />
-      <Workstation2 onClick={() => positionHandler(9, 4)} />
-      <Workstation3 onClick={() => positionHandler(7, 3)} />
+      <Character
+        row={characterPosition.row}
+        column={characterPosition.column}
+      />
+      <Workstation onClick={() => positionHandler(9, 3)} row={9} column={3} />
+      <Workstation onClick={() => positionHandler(9, 4)} row={9} column={4} />
+      <Workstation onClick={() => positionHandler(7, 3)} row={7} column={3} />
     </WorkstationDiv>
   );
 
   function positionHandler(row, column) {
-    setRow(row);
-    setColumn(column);
+    setCharacterPositon({ row, column });
   }
 }
