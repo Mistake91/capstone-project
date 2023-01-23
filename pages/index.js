@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-import {
-  Workstation,
-  WorkstationDiv,
-  Character,
-} from "../components/homeStyles";
+import { Workstation, Grid, Character } from "../components/homeStyles";
 
 export default function HomePage() {
   const [characterPosition, setCharacterPositon] = useState({
@@ -13,7 +9,7 @@ export default function HomePage() {
   });
 
   return (
-    <WorkstationDiv>
+    <>
       <Character
         row={characterPosition.row}
         column={characterPosition.column}
@@ -21,7 +17,7 @@ export default function HomePage() {
       <Workstation onClick={() => positionHandler(9, 3)} row={9} column={3} />
       <Workstation onClick={() => positionHandler(9, 4)} row={9} column={4} />
       <Workstation onClick={() => positionHandler(7, 3)} row={7} column={3} />
-    </WorkstationDiv>
+    </>
   );
 
   function positionHandler(row, column) {

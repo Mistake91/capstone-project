@@ -10,7 +10,7 @@ export const Workstation = styled.button`
   grid-column: ${(props) => props.column};
 `;
 
-export const WorkstationDiv = styled.div`
+export const Grid = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
