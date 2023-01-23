@@ -6,7 +6,7 @@ export const Workstation1 = styled.button`
   border: 2px dashed black;
   border-radius: 25px;
   background-color: transparent;
-  grid-row: 5;
+  grid-row: 9;
   grid-column: 3;
 `;
 
@@ -16,8 +16,8 @@ export const Workstation2 = styled.button`
   border: 2px dashed black;
   border-radius: 25px;
   background-color: transparent;
-  grid-row: 5;
-  grid-column: 6;
+  grid-row: 9;
+  grid-column: 4;
 `;
 
 export const Workstation3 = styled.button`
@@ -26,33 +26,24 @@ export const Workstation3 = styled.button`
   border: 2px dashed black;
   border-radius: 25px;
   background-color: transparent;
-  grid-row: 2;
-  grid-column: 4;
+  grid-row: 7;
+  grid-column: 3;
 `;
 
 export const WorkstationDiv = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 4% 20% 4% 20% 4% 20% 4% 20% 4%;
-  grid-template-rows: 267px 50px 50px 50px 50px 50px 50px 50px 50px;
+  column-gap: 4%;
+  grid-template-columns: 1fr repeat(4, 20%) 1fr;
+  grid-template-rows: repeat(13, 50px);
 `;
 
 export const Character = styled.div`
   height: 80px;
   width: 50px;
   background-color: red;
-  grid-row: 5;
-  grid-column: 2;
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
   margin-left: 13px;
-  &.ws_one {
-    grid-column: 3;
-  }
-  &.ws_two {
-    grid-column: 6;
-  }
-  &.ws_three {
-    grid-row: 2;
-    grid-column: 4;
-  }
 `;
