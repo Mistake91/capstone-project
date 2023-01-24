@@ -14,9 +14,9 @@ export default function HomePage() {
         row={characterPosition.row}
         column={characterPosition.column}
       />
-      <Workstation onClick={() => positionHandler(9, 3)} row={9} column={3} />
-      <Workstation onClick={() => positionHandler(9, 4)} row={9} column={4} />
-      <Workstation onClick={() => positionHandler(7, 3)} row={7} column={3} />
+      <Workstation row={9} column={3} onClick={() => positionHandler(9, 3)} />
+      <Workstation row={9} column={4} onClick={() => positionHandler(9, 4)} />
+      <Workstation row={7} column={3} onClick={() => positionHandler(7, 3)} />
     </>
   );
 

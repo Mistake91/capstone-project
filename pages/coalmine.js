@@ -14,9 +14,9 @@ export default function Worldmap() {
         row={characterPosition.row}
         column={characterPosition.column}
       />
-      <Workstation onClick={() => positionHandler(3, 3)} row={3} column={3} />
-      <Workstation onClick={() => positionHandler(6, 4)} row={6} column={4} />
-      <Workstation onClick={() => positionHandler(9, 3)} row={9} column={3} />
+      <Workstation row={3} column={3} onClick={() => positionHandler(3, 3)} />
+      <Workstation row={6} column={4} onClick={() => positionHandler(6, 4)} />
+      <Workstation row={9} column={3} onClick={() => positionHandler(9, 3)} />
     </>
   );
 
