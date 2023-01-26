@@ -1,23 +1,32 @@
 import { useState } from "react";
+import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Coalmine() {
+export default function Coalmine({ coal, setCoal }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
 
-  let klick = false;
+  const [stopButton] = useState({
+    visi: "hidden",
+  });
 
   return (
     <>
-      <button
+      <StopWorkingButton
+        row={characterPosition.row + 2}
+        column={characterPosition.column}
+        visi={stopButton.visi}
         onClick={() => {
-          klick = true;
-          schnup(9, 2);
+          stopButton.visi = "hidden";
+          stopWorking(9, 2);
         }}
-      />
+      >
+        STOP
+      </StopWorkingButton>
+
       <Character
         row={characterPosition.row}
         column={characterPosition.column}
@@ -26,7 +35,8 @@ export default function Coalmine() {
         row={3}
         column={3}
         onClick={() => {
-          blub(9);
+          stopButton.visi = "visible";
+          startWorking();
           positionHandler(3, 3);
         }}
       />
@@ -34,7 +44,8 @@ export default function Coalmine() {
         row={6}
         column={4}
         onClick={() => {
-          blub(9);
+          stopButton.visi = "visible";
+          startWorking();
           positionHandler(6, 4);
         }}
       />
@@ -42,7 +53,8 @@ export default function Coalmine() {
         row={9}
         column={3}
         onClick={() => {
-          blub(9);
+          stopButton.visi = "visible";
+          startWorking();
           positionHandler(9, 3);
         }}
       />
@@ -53,16 +65,21 @@ export default function Coalmine() {
     setCharacterPositon({ row, column });
   }
 
-  function schnup(row, column) {
+  function startWorking() {
+    clearInterval(window.interval);
+    window.interval = setInterval(() => {
+      setCoal(coal++);
+    }, 2000);
+  }
+
+  function stopWorking(row, column) {
     setCharacterPositon({ row, column });
     clearInterval(window.interval);
   }
-
-  function blub() {
-    clearInterval(window.interval);
-    window.interval = setInterval(() => {
-      console.log("This will run every second!");
-      return () => clearInterval(interval);
-    }, 1000);
-  }
 }
+
+const StopWorkingButton = styled.button`
+  visibility: ${(props) => props.visi};
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+`;
