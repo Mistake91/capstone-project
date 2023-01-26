@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Coalmine() {
+export default function Ironmine() {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
