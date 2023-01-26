@@ -35,8 +35,6 @@ export default function Coalmine({ coal, setCoal }) {
         row={3}
         column={3}
         onClick={() => {
-          stopButton.visi = "visible";
-          startWorking();
           positionHandler(3, 3);
         }}
       />
@@ -44,8 +42,6 @@ export default function Coalmine({ coal, setCoal }) {
         row={6}
         column={4}
         onClick={() => {
-          stopButton.visi = "visible";
-          startWorking();
           positionHandler(6, 4);
         }}
       />
@@ -53,8 +49,6 @@ export default function Coalmine({ coal, setCoal }) {
         row={9}
         column={3}
         onClick={() => {
-          stopButton.visi = "visible";
-          startWorking();
           positionHandler(9, 3);
         }}
       />
@@ -63,6 +57,8 @@ export default function Coalmine({ coal, setCoal }) {
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
+    stopButton.visi = "visible";
+    startWorking();
   }
 
   function startWorking() {
