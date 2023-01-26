@@ -9,6 +9,9 @@ export default function Worldmap() {
       <WMLink row={7} column={3} href="/coalmine">
         coal
       </WMLink>
+      <WMLink row={6} column={4} href="/ironmine">
+        iron
+      </WMLink>
     </>
   );
 }
