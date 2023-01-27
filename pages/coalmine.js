@@ -13,7 +13,7 @@ export default function Coalmine({ materials, setMaterials }) {
 
   return (
     <>
-      {isStopButtonVIsible ? (
+      {isStopButtonVIsible && (
         <StyledButton
           row={characterPosition.row + 2}
           column={characterPosition.column}
@@ -24,8 +24,6 @@ export default function Coalmine({ materials, setMaterials }) {
         >
           STOP
         </StyledButton>
-      ) : (
-        ""
       )}
 
       <Character
