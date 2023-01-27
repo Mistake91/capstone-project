@@ -6,11 +6,14 @@ export default function Worldmap() {
       <WMLink row={4} column={2} href="/">
         home
       </WMLink>
-      <WMLink row={7} column={3} href="/coalmine">
+      <WMLink row={8} column={3} href="/coalmine">
         coal
       </WMLink>
       <WMLink row={6} column={4} href="/ironmine">
         iron
+      </WMLink>
+      <WMLink row={11} column={4} href="/goldmine">
+        gold
       </WMLink>
     </>
   );
