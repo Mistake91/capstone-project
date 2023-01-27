@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { Grid } from "@/components/homeStyles";
 
-export default function Layout({ materials }) {
+export default function Layout({ materials, children }) {
   const router = useRouter();
 
   function worldmapButton() {
@@ -14,11 +15,14 @@ export default function Layout({ materials }) {
 
   return (
     <>
-      <WorldmapButton onClick={worldmapButton} />
-      <MaterialList>
-        <li>Coal: {materials[0].coal}</li>
-        <li>Iron: {materials[1].iron}</li>
-      </MaterialList>
+      <Grid>
+        {children}
+        <WorldmapButton onClick={worldmapButton} />
+        <MaterialList>
+          <li>Coal: {materials[0].coal}</li>
+          <li>Iron: {materials[1].iron}</li>
+        </MaterialList>
+      </Grid>
     </>
   );
 }

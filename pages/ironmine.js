@@ -9,21 +9,24 @@ export default function Ironmine({ materials, setMaterials }) {
     column: 2,
   });
 
-  const [visibility, setVisibility] = useState("hidden");
+  const [isStopButtonVIsible, setIsStopButtonVIsible] = useState(false);
 
   return (
     <>
-      <StyledButton
-        row={characterPosition.row + 2}
-        column={characterPosition.column}
-        visibility={visibility}
-        onClick={() => {
-          setVisibility("hidden");
-          stopWorking(9, 2);
-        }}
-      >
-        STOP
-      </StyledButton>
+      {isStopButtonVIsible ? (
+        <StyledButton
+          row={characterPosition.row + 2}
+          column={characterPosition.column}
+          onClick={() => {
+            setIsStopButtonVIsible(false);
+            stopWorking(9, 2);
+          }}
+        >
+          STOP
+        </StyledButton>
+      ) : (
+        ""
+      )}
 
       <Character
         row={characterPosition.row}
@@ -55,7 +58,7 @@ export default function Ironmine({ materials, setMaterials }) {
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    setVisibility("visible");
+    setIsStopButtonVIsible(true);
     startWorking(materials);
   }
 
@@ -73,7 +76,6 @@ export default function Ironmine({ materials, setMaterials }) {
 }
 
 const StyledButton = styled.button`
-  visibility: ${(props) => props.visibility};
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;

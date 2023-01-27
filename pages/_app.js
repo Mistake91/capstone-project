@@ -1,6 +1,5 @@
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import { Grid } from "@/components/homeStyles";
 import useLocalStorageState from "use-local-storage-state";
 import Layout from "@/components/layout";
 
@@ -15,14 +14,14 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <Grid>
+
+      <Layout materials={materials}>
         <Component
           {...pageProps}
           materials={materials}
           setMaterials={setMaterials}
         />
-        <Layout materials={materials} />
-      </Grid>
+      </Layout>
     </>
   );
 }
