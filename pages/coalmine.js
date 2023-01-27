@@ -3,29 +3,28 @@ import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Coalmine({ coal, setCoal }) {
+export default function Coalmine({ materials, setMaterials }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
 
-  const [stopButton] = useState({
-    visi: "hidden",
-  });
+  const [isStopButtonVIsible, setIsStopButtonVIsible] = useState(false);
 
   return (
     <>
-      <StopWorkingButton
-        row={characterPosition.row + 2}
-        column={characterPosition.column}
-        visi={stopButton.visi}
-        onClick={() => {
-          stopButton.visi = "hidden";
-          stopWorking(9, 2);
-        }}
-      >
-        STOP
-      </StopWorkingButton>
+      {isStopButtonVIsible && (
+        <StyledButton
+          row={characterPosition.row + 2}
+          column={characterPosition.column}
+          onClick={() => {
+            setIsStopButtonVIsible(false);
+            stopWorking(9, 2);
+          }}
+        >
+          STOP
+        </StyledButton>
+      )}
 
       <Character
         row={characterPosition.row}
@@ -57,14 +56,13 @@ export default function Coalmine({ coal, setCoal }) {
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    stopButton.visi = "visible";
-    startWorking();
+    setIsStopButtonVIsible(true);
+    startWorking(materials);
   }
-
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setCoal(coal++);
+      setMaterials(materials, materials[0].coal++);
     }, 2000);
   }
 
@@ -74,8 +72,7 @@ export default function Coalmine({ coal, setCoal }) {
   }
 }
 
-const StopWorkingButton = styled.button`
-  visibility: ${(props) => props.visi};
+const StyledButton = styled.button`
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;
