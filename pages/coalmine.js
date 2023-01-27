@@ -9,23 +9,21 @@ export default function Coalmine({ materials, setMaterials }) {
     column: 2,
   });
 
-  const [stopButton] = useState({
-    visi: "hidden",
-  });
+  const [visibility, setVisibility] = useState("hidden");
 
   return (
     <>
-      <StopWorkingButton
+      <StyledButton
         row={characterPosition.row + 2}
         column={characterPosition.column}
-        visi={stopButton.visi}
+        visibility={visibility}
         onClick={() => {
-          stopButton.visi = "hidden";
+          setVisibility("hidden");
           stopWorking(9, 2);
         }}
       >
         STOP
-      </StopWorkingButton>
+      </StyledButton>
 
       <Character
         row={characterPosition.row}
@@ -55,9 +53,9 @@ export default function Coalmine({ materials, setMaterials }) {
     </>
   );
 
-  function positionHandler(row, column, materials) {
+  function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    stopButton.visi = "visible";
+    setVisibility("visible");
     startWorking(materials);
   }
 
@@ -74,8 +72,8 @@ export default function Coalmine({ materials, setMaterials }) {
   }
 }
 
-const StopWorkingButton = styled.button`
-  visibility: ${(props) => props.visi};
+const StyledButton = styled.button`
+  visibility: ${(props) => props.visibility};
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;
