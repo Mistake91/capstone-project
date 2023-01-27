@@ -7,8 +7,17 @@ import useLocalStorageState from "use-local-storage-state";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+
   const [coal, setCoal] = useLocalStorageState("coal", {
     defaultValue: 0,
+  });
+
+  const [iron, setIron] = useLocalStorageState("iron", {
+    defaultValue: 0,
+  });
+
+  const [materials, setMaterials] = useLocalStorageState("materials", {
+    defaultValue: [{ coal: 0 }, { iron: 0 }],
   });
 
   function worldmapButton() {
@@ -26,10 +35,15 @@ export default function App({ Component, pageProps }) {
         <title>Capstone Project</title>
       </Head>
       <Grid>
-        <Component {...pageProps} coal={coal} setCoal={setCoal} />
+        <Component
+          {...pageProps}
+          materials={materials}
+          setMaterials={setMaterials}
+        />
         <WorldmapButton onClick={worldmapButton} />
         <MaterialList>
-          <li>Coal:{coal}</li>
+          <li>Coal: {materials[0].coal}</li>
+          <li>Iron: {materials[1].iron}</li>
         </MaterialList>
       </Grid>
     </>
