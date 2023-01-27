@@ -14,16 +14,14 @@ export default function Layout({ materials, children }) {
   }
 
   return (
-    <>
-      <Grid>
-        {children}
-        <WorldmapButton onClick={worldmapButton} />
-        <MaterialList>
-          <li>Coal: {materials[0].coal}</li>
-          <li>Iron: {materials[1].iron}</li>
-        </MaterialList>
-      </Grid>
-    </>
+    <Grid>
+      {children}
+      <WorldmapButton onClick={worldmapButton} />
+      <MaterialList>
+        <li>Coal: {materials[0].coal}</li>
+        <li>Iron: {materials[1].iron}</li>
+      </MaterialList>
+    </Grid>
   );
 }
 
