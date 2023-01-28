@@ -3,14 +3,29 @@ import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Goldmine() {
+export default function Goldmine({ materials, setMaterials }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
 
+  const [isStopButtonVIsible, setIsStopButtonVIsible] = useState(false);
+
   return (
     <>
+      {isStopButtonVIsible && (
+        <StyledButton
+          row={characterPosition.row + 2}
+          column={characterPosition.column}
+          onClick={() => {
+            setIsStopButtonVIsible(false);
+            stopWorking(9, 2);
+          }}
+        >
+          STOP
+        </StyledButton>
+      )}
+
       <Character
         row={characterPosition.row}
         column={characterPosition.column}
@@ -41,8 +56,22 @@ export default function Goldmine() {
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
+    setIsStopButtonVIsible(true);
+    startWorking(materials);
+  }
+  function startWorking() {
+    clearInterval(window.interval);
+    window.interval = setInterval(() => {
+      setMaterials(materials, materials[2].gold++);
+    }, 2000);
+  }
+
+  function stopWorking(row, column) {
+    setCharacterPositon({ row, column });
+    clearInterval(window.interval);
   }
 }
+
 const StyledButton = styled.button`
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};

@@ -5,7 +5,7 @@ import Layout from "@/components/layout";
 
 export default function App({ Component, pageProps }) {
   const [materials, setMaterials] = useLocalStorageState("materials", {
-    defaultValue: [{ coal: 0 }, { iron: 0 }],
+    defaultValue: [{ coal: 0 }, { iron: 0 }, { gold: 0 }],
   });
 
   return (
