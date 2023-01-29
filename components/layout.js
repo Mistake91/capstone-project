@@ -20,6 +20,7 @@ export default function Layout({ materials, children }) {
       <MaterialList>
         <li>Coal: {materials[0].coal}</li>
         <li>Iron: {materials[1].iron}</li>
+        <li>Gold: {materials[2].gold}</li>
       </MaterialList>
     </Grid>
   );
