@@ -9,16 +9,16 @@ export default function Coalmine({ materials, setMaterials }) {
     column: 2,
   });
 
-  const [isStopButtonVIsible, setIsStopButtonVIsible] = useState(false);
+  const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
 
   return (
     <>
-      {isStopButtonVIsible && (
+      {isStopButtonVisible && (
         <StyledButton
           row={characterPosition.row + 2}
           column={characterPosition.column}
           onClick={() => {
-            setIsStopButtonVIsible(false);
+            setIsStopButtonVisible(false);
             stopWorking(9, 2);
           }}
         >
@@ -56,7 +56,7 @@ export default function Coalmine({ materials, setMaterials }) {
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    setIsStopButtonVIsible(true);
+    setIsStopButtonVisible(true);
     startWorking(materials);
   }
   function startWorking() {
