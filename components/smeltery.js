@@ -11,14 +11,12 @@ export default function Smeltery({ inventar, setInventar, stopWorking }) {
         inventar[0].coal > 0 &&
         inventar[1].ironore > 0
       ) {
-        if (inventar[0].coal > 0 && inventar[1].ironore > 0) {
-          setInventar(
-            inventar,
-            inventar[0].coal--,
-            inventar[1].ironore--,
-            inventar[3].ironingot++
-          );
-        }
+        setInventar(
+          inventar,
+          inventar[0].coal--,
+          inventar[1].ironore--,
+          inventar[3].ironingot++
+        );
       } else if (inventar[0].coal > 0 && inventar[2].goldore > 0) {
         setInventar(
           inventar,
