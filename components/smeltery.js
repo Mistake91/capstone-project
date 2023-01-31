@@ -29,7 +29,7 @@ export default function Smeltery({ inventar, setInventar, stopWorking }) {
       } else {
         stopWorking(9, 3);
       }
-    }, 2000);
+    }, 3000);
   }
 
   return (
