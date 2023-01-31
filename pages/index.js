@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Smeltery from "@/components/Smeltery";
 import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
+import Smeltery from "../components/smeltery";
 
 export default function HomePage({ inventar, setInventar }) {
   const [characterPosition, setCharacterPositon] = useState({
