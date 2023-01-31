@@ -4,8 +4,14 @@ import useLocalStorageState from "use-local-storage-state";
 import Layout from "@/components/layout";
 
 export default function App({ Component, pageProps }) {
-  const [materials, setMaterials] = useLocalStorageState("materials", {
-    defaultValue: [{ coal: 0 }, { iron: 0 }, { gold: 0 }],
+  const [inventar, setInventar] = useLocalStorageState("inventar", {
+    defaultValue: [
+      { coal: 10 },
+      { ironore: 110 },
+      { goldore: 2 },
+      { ironingot: 0 },
+      { goldingot: 0 },
+    ],
   });
 
   return (
@@ -15,11 +21,11 @@ export default function App({ Component, pageProps }) {
         <title>Capstone Project</title>
       </Head>
 
-      <Layout materials={materials}>
+      <Layout inventar={inventar}>
         <Component
           {...pageProps}
-          materials={materials}
-          setMaterials={setMaterials}
+          inventar={inventar}
+          setInventar={setInventar}
         />
       </Layout>
     </>

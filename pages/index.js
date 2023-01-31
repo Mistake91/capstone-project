@@ -1,15 +1,40 @@
 import { useState } from "react";
+import Smeltery from "@/components/Smeltery";
+import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function HomePage() {
+export default function HomePage({ inventar, setInventar }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
 
+  const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
+
   return (
     <>
+      {characterPosition.row === 9 && characterPosition.column === 3 && (
+        <Smeltery
+          inventar={inventar}
+          setInventar={setInventar}
+          stopWorking={stopWorking}
+        />
+      )}
+
+      {isStopButtonVisible && (
+        <StyledButton
+          row={characterPosition.row + 2}
+          column={characterPosition.column}
+          onClick={() => {
+            setIsStopButtonVisible(false);
+            stopWorking(9, 2);
+          }}
+        >
+          STOP
+        </StyledButton>
+      )}
+
       <Character
         row={characterPosition.row}
         column={characterPosition.column}
@@ -22,5 +47,16 @@ export default function HomePage() {
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
+    setIsStopButtonVisible(true);
+  }
+
+  function stopWorking(row, column) {
+    setCharacterPositon({ row, column });
+    clearInterval(window.interval);
   }
 }
+
+const StyledButton = styled.button`
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+`;
