@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Goldmine({ materials, setMaterials }) {
+export default function Goldmine({ inventar, setInventar }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
@@ -57,12 +57,12 @@ export default function Goldmine({ materials, setMaterials }) {
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
     setIsStopButtonVisible(true);
-    startWorking(materials);
+    startWorking(inventar);
   }
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setMaterials(materials, materials[2].gold++);
+      setInventar(inventar, inventar[2].goldore++);
     }, 2000);
   }
 

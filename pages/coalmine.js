@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Coalmine({ materials, setMaterials }) {
+export default function Coalmine({ inventar, setInventar }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
@@ -57,12 +57,12 @@ export default function Coalmine({ materials, setMaterials }) {
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
     setIsStopButtonVisible(true);
-    startWorking(materials);
+    startWorking(inventar);
   }
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setMaterials(materials, materials[0].coal++);
+      setInventar(inventar, inventar[0].coal++);
     }, 2000);
   }
 
