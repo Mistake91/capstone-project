@@ -62,7 +62,7 @@ export default function Coalmine({ inventar, setInventar }) {
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setInventar(inventar, inventar[0].coal++);
+      setInventar(inventar, inventar[0].amount++);
     }, 2000);
   }
 

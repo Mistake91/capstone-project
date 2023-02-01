@@ -62,7 +62,7 @@ export default function Goldmine({ inventar, setInventar }) {
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setInventar(inventar, inventar[2].goldore++);
+      setInventar(inventar, inventar[2].amount++);
     }, 2000);
   }
 

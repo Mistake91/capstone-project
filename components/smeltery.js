@@ -8,21 +8,21 @@ export default function Smeltery({ inventar, setInventar, stopWorking }) {
     window.interval = setInterval(() => {
       if (
         choosedMaterial === "iron" &&
-        inventar[0].coal > 0 &&
-        inventar[1].ironore > 0
+        inventar[0].amount > 0 &&
+        inventar[1].amount > 0
       ) {
         setInventar(
           inventar,
-          inventar[0].coal--,
-          inventar[1].ironore--,
-          inventar[3].ironingot++
+          inventar[0].amount--,
+          inventar[1].amount--,
+          inventar[3].amount++
         );
-      } else if (inventar[0].coal > 0 && inventar[2].goldore > 0) {
+      } else if (inventar[0].amount > 0 && inventar[2].amount > 0) {
         setInventar(
           inventar,
-          inventar[0].coal--,
-          inventar[2].goldore--,
-          inventar[4].goldingot++
+          inventar[0].amount--,
+          inventar[2].amount--,
+          inventar[4].amount++
         );
       } else {
         stopWorking(9, 3);

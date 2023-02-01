@@ -63,7 +63,7 @@ export default function Ironmine({ inventar, setInventar }) {
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setInventar(inventar, inventar[1].ironore++);
+      setInventar(inventar, inventar[1].amount++);
     }, 2000);
   }
 
