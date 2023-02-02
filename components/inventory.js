@@ -3,7 +3,6 @@ import Image from "next/image";
 import icon_placeholder from "../images/icon_placeholder.png";
 
 export default function Inventar({ inventar }) {
-  console.log(inventar);
   return (
     <Inventory>
       {inventar.map((item) => (
