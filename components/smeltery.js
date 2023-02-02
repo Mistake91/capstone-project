@@ -1,29 +1,22 @@
 import styled from "styled-components";
 
-export default function Smeltery({ inventar, setInventar, stopWorking }) {
-  let choosedMaterial = "";
-
-  function working() {
+export default function Smeltery({
+  inventory,
+  stopWorking,
+  smelterIron,
+  smelterGold,
+}) {
+  function working(material) {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
       if (
-        choosedMaterial === "iron" &&
-        inventar[0].amount > 0 &&
-        inventar[1].amount > 0
+        material === "iron" &&
+        inventory.coal.amount > 0 &&
+        inventory.ironore.amount > 0
       ) {
-        setInventar(
-          inventar,
-          inventar[0].amount--,
-          inventar[1].amount--,
-          inventar[3].amount++
-        );
-      } else if (inventar[0].amount > 0 && inventar[2].amount > 0) {
-        setInventar(
-          inventar,
-          inventar[0].amount--,
-          inventar[2].amount--,
-          inventar[4].amount++
-        );
+        smelterIron();
+      } else if (inventory.coal.amount > 0 && inventory.goldore.amount > 0) {
+        smelterGold();
       } else {
         stopWorking(9, 3);
       }
@@ -36,16 +29,14 @@ export default function Smeltery({ inventar, setInventar, stopWorking }) {
         <h1>which ore you wanna smelt?</h1>
         <StyledButton
           onClick={() => {
-            working();
-            choosedMaterial = "iron";
+            working("iron");
           }}
         >
           IRON
         </StyledButton>
         <StyledButton
           onClick={() => {
-            choosedMaterial = "gold";
-            working();
+            working("gold");
           }}
         >
           GOLD

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Ironmine({ inventar, setInventar }) {
+export default function Ironmine({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
@@ -57,13 +57,13 @@ export default function Ironmine({ inventar, setInventar }) {
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
     setIsStopButtonVisible(true);
-    startWorking(inventar);
+    startWorking(inventory);
   }
 
   function startWorking() {
     clearInterval(window.interval);
     window.interval = setInterval(() => {
-      setInventar(inventar, inventar[1].amount++);
+      setInventory(inventory, (inventory.ironore.amount += 1));
     }, 2000);
   }
 

@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { Grid } from "@/components/homeStyles";
-import Inventar from "./inventory";
+import Inventory from "./inventory";
 
-export default function Layout({ children, inventar }) {
+export default function Layout({ children, inventory }) {
   const router = useRouter();
   const [inventoryState, setInventoryState] = useState(false);
 
@@ -26,7 +26,7 @@ export default function Layout({ children, inventar }) {
           setInventoryState(!inventoryState);
         }}
       />
-      {inventoryState === true ? <Inventar inventar={inventar} /> : ""}
+      {inventoryState === true ? <Inventory inventory={inventory} /> : ""}
     </Grid>
   );
 }

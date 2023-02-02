@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { Workstation, Character } from "../components/homeStyles";
 import Smeltery from "../components/smeltery";
 
-export default function HomePage({ inventar, setInventar }) {
+export default function HomePage({
+  inventory,
+  setInventory,
+  smelterIron,
+  smelterGold,
+}) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
@@ -16,9 +21,11 @@ export default function HomePage({ inventar, setInventar }) {
     <>
       {characterPosition.row === 9 && characterPosition.column === 3 && (
         <Smeltery
-          inventar={inventar}
-          setInventar={setInventar}
+          inventory={inventory}
+          setInventory={setInventory}
           stopWorking={stopWorking}
+          smelterIron={smelterIron}
+          smelterGold={smelterGold}
         />
       )}
 
