@@ -16,41 +16,45 @@ export default function App({ Component, pageProps }) {
   });
 
   function smelterIron() {
-    const updatedInventory = {
-      ...inventory,
-      coal: {
-        ...inventory.coal,
-        amount: (inventory.coal.amount -= 1),
-      },
-      ironore: {
-        ...inventory.ironore,
-        amount: (inventory.ironore.amount -= 1),
-      },
-      ironingot: {
-        ...inventory.ironingot,
-        amount: (inventory.ironingot.amount += 1),
-      },
-    };
-    setInventory(updatedInventory);
+    setInventory((prevInventory) => {
+      const updatedInventory = {
+        ...prevInventory,
+        coal: {
+          ...prevInventory.coal,
+          amount: prevInventory.coal.amount - 1,
+        },
+        ironore: {
+          ...prevInventory.ironore,
+          amount: prevInventory.ironore.amount - 1,
+        },
+        ironingot: {
+          ...prevInventory.ironingot,
+          amount: prevInventory.ironingot.amount + 1,
+        },
+      };
+      return updatedInventory;
+    });
   }
 
   function smelterGold() {
-    const updatedInventory = {
-      ...inventory,
-      coal: {
-        ...inventory.coal,
-        amount: (inventory.coal.amount -= 1),
-      },
-      goldore: {
-        ...inventory.goldore,
-        amount: (inventory.goldore.amount -= 1),
-      },
-      goldingot: {
-        ...inventory.goldingot,
-        amount: (inventory.goldingot.amount += 1),
-      },
-    };
-    setInventory(updatedInventory);
+    setInventory((prevInventory) => {
+      const updatedInventory = {
+        ...prevInventory,
+        coal: {
+          ...prevInventory.coal,
+          amount: prevInventory.coal.amount - 1,
+        },
+        goldore: {
+          ...prevInventory.goldore,
+          amount: prevInventory.goldore.amount - 1,
+        },
+        goldingot: {
+          ...prevInventory.goldingot,
+          amount: prevInventory.goldingot.amount + 1,
+        },
+      };
+      return updatedInventory;
+    });
   }
 
   return (

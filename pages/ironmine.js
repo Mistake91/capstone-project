@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
@@ -10,6 +10,26 @@ export default function Ironmine({ inventory, setInventory }) {
   });
 
   const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
+
+  const [isWorking, setIsWorking] = useState(null);
+
+  useEffect(() => {
+    if (isWorking) {
+      const interval = setInterval(() => {
+        setInventory((prevInventory) => {
+          const updatedInventory = {
+            ...prevInventory,
+            ironore: {
+              ...prevInventory.ironore,
+              amount: prevInventory.ironore.amount + 1,
+            },
+          };
+          return updatedInventory;
+        });
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [setInventory, isWorking]);
 
   return (
     <>
@@ -57,19 +77,12 @@ export default function Ironmine({ inventory, setInventory }) {
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
     setIsStopButtonVisible(true);
-    startWorking(inventory);
-  }
-
-  function startWorking() {
-    clearInterval(window.interval);
-    window.interval = setInterval(() => {
-      setInventory(inventory, (inventory.ironore.amount += 1));
-    }, 2000);
+    setIsWorking(inventory);
   }
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
-    clearInterval(window.interval);
+    setIsWorking(false);
   }
 }
 

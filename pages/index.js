@@ -77,7 +77,6 @@ export default function HomePage({
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
-    clearInterval(window.interval);
   }
 }
 

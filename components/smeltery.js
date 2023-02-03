@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 export default function Smeltery({
   inventory,
@@ -6,22 +7,30 @@ export default function Smeltery({
   smelterIron,
   smelterGold,
 }) {
-  function working(material) {
-    clearInterval(window.interval);
-    window.interval = setInterval(() => {
-      if (
-        material === "iron" &&
-        inventory.coal.amount > 0 &&
-        inventory.ironore.amount > 0
-      ) {
-        smelterIron();
-      } else if (inventory.coal.amount > 0 && inventory.goldore.amount > 0) {
-        smelterGold();
-      } else {
-        stopWorking(9, 3);
-      }
-    }, 3000);
-  }
+  const [material, setMaterial] = useState(null);
+
+  useEffect(() => {
+    if (material) {
+      const interval = setInterval(() => {
+        if (
+          material === "iron" &&
+          inventory.coal.amount > 0 &&
+          inventory.ironore.amount > 0
+        ) {
+          smelterIron();
+        } else if (
+          material === "gold" &&
+          inventory.coal.amount > 0 &&
+          inventory.goldore.amount > 0
+        ) {
+          smelterGold();
+        } else {
+          stopWorking(9, 3);
+        }
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [material, inventory, smelterGold, smelterIron, stopWorking]);
 
   return (
     <>
@@ -29,14 +38,14 @@ export default function Smeltery({
         <h1>which ore you wanna smelt?</h1>
         <StyledButton
           onClick={() => {
-            working("iron");
+            setMaterial("iron");
           }}
         >
           IRON
         </StyledButton>
         <StyledButton
           onClick={() => {
-            working("gold");
+            setMaterial("gold");
           }}
         >
           GOLD
