@@ -4,7 +4,12 @@ import styled from "styled-components";
 import { Workstation, Character } from "../components/homeStyles";
 import Smeltery from "../components/smeltery";
 
-export default function HomePage({ inventar, setInventar }) {
+export default function HomePage({
+  inventory,
+  setInventory,
+  smelterIron,
+  smelterGold,
+}) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
@@ -16,9 +21,11 @@ export default function HomePage({ inventar, setInventar }) {
     <>
       {characterPosition.row === 9 && characterPosition.column === 3 && (
         <Smeltery
-          inventar={inventar}
-          setInventar={setInventar}
+          inventory={inventory}
+          setInventory={setInventory}
           stopWorking={stopWorking}
+          smelterIron={smelterIron}
+          smelterGold={smelterGold}
         />
       )}
 
@@ -46,20 +53,6 @@ export default function HomePage({ inventar, setInventar }) {
           positionHandler(9, 3), stopWorking(9, 3);
         }}
       />
-      <Workstation
-        row={9}
-        column={4}
-        onClick={() => {
-          positionHandler(9, 4), stopWorking(9, 4);
-        }}
-      />
-      <Workstation
-        row={7}
-        column={3}
-        onClick={() => {
-          positionHandler(7, 3), stopWorking(7, 3);
-        }}
-      />
     </>
   );
 
@@ -70,7 +63,6 @@ export default function HomePage({ inventar, setInventar }) {
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
-    clearInterval(window.interval);
   }
 }
 

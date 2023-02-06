@@ -1,15 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { Workstation, Character } from "../components/homeStyles";
 
-export default function Goldmine({ inventar, setInventar }) {
+export default function Goldmine({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
 
   const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
+
+  const [isWorking, setIsWorking] = useState(null);
+
+  useEffect(() => {
+    if (isWorking) {
+      const interval = setInterval(() => {
+        setInventory((prevInventory) => {
+          const updatedInventory = {
+            ...prevInventory,
+            goldore: {
+              ...prevInventory.goldore,
+              amount: prevInventory.goldore.amount + 1,
+            },
+          };
+          return updatedInventory;
+        });
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [setInventory, isWorking]);
 
   return (
     <>
@@ -57,18 +77,12 @@ export default function Goldmine({ inventar, setInventar }) {
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
     setIsStopButtonVisible(true);
-    startWorking(inventar);
-  }
-  function startWorking() {
-    clearInterval(window.interval);
-    window.interval = setInterval(() => {
-      setInventar(inventar, inventar[2].goldore++);
-    }, 2000);
+    setIsWorking(inventory);
   }
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
-    clearInterval(window.interval);
+    setIsWorking(false);
   }
 }
 

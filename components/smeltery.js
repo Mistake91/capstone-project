@@ -1,34 +1,36 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
-export default function Smeltery({ inventar, setInventar, stopWorking }) {
-  let choosedMaterial = "";
+export default function Smeltery({
+  inventory,
+  stopWorking,
+  smelterIron,
+  smelterGold,
+}) {
+  const [material, setMaterial] = useState(null);
 
-  function working() {
-    clearInterval(window.interval);
-    window.interval = setInterval(() => {
-      if (
-        choosedMaterial === "iron" &&
-        inventar[0].coal > 0 &&
-        inventar[1].ironore > 0
-      ) {
-        setInventar(
-          inventar,
-          inventar[0].coal--,
-          inventar[1].ironore--,
-          inventar[3].ironingot++
-        );
-      } else if (inventar[0].coal > 0 && inventar[2].goldore > 0) {
-        setInventar(
-          inventar,
-          inventar[0].coal--,
-          inventar[2].goldore--,
-          inventar[4].goldingot++
-        );
-      } else {
-        stopWorking(9, 3);
-      }
-    }, 3000);
-  }
+  useEffect(() => {
+    if (material) {
+      const interval = setInterval(() => {
+        if (
+          material === "iron" &&
+          inventory.coal.amount > 0 &&
+          inventory.ironore.amount > 0
+        ) {
+          smelterIron();
+        } else if (
+          material === "gold" &&
+          inventory.coal.amount > 0 &&
+          inventory.goldore.amount > 0
+        ) {
+          smelterGold();
+        } else {
+          stopWorking(9, 3);
+        }
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [material, inventory, smelterGold, smelterIron, stopWorking]);
 
   return (
     <>
@@ -36,16 +38,14 @@ export default function Smeltery({ inventar, setInventar, stopWorking }) {
         <h1>which ore you wanna smelt?</h1>
         <StyledButton
           onClick={() => {
-            working();
-            choosedMaterial = "iron";
+            setMaterial("iron");
           }}
         >
           IRON
         </StyledButton>
         <StyledButton
           onClick={() => {
-            choosedMaterial = "gold";
-            working();
+            setMaterial("gold");
           }}
         >
           GOLD
