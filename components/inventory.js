@@ -29,7 +29,7 @@ const StyledSection = styled.section`
   grid-template-rows: 25px repeat(4, 60px);
 `;
 
-const InventoryPlace = styled.section`
+const InventoryPlace = styled.article`
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;

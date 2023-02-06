@@ -20,19 +20,21 @@ export default function Layout({ children, inventory }) {
   return (
     <Grid>
       {children}
-      <WorldmapButton onClick={worldmapButton} />
+      <WorldmapButton onClick={worldmapButton}>Worldmap</WorldmapButton>
       <InventoryButton
         onClick={() => {
           setInventoryState(!inventoryState);
         }}
-      />
-      {inventoryState === true ? <Inventory inventory={inventory} /> : ""}
+      >
+        Inventory
+      </InventoryButton>
+      {inventoryState ? <Inventory inventory={inventory} /> : null}
     </Grid>
   );
 }
 
 const WorldmapButton = styled.button`
-  width: 25px;
+  width: 70px;
   height: 25px;
   border-radius: 25%;
   grid-column: 2;
@@ -41,7 +43,7 @@ const WorldmapButton = styled.button`
 `;
 
 const InventoryButton = styled.button`
-  width: 25px;
+  width: 70px;
   height: 25px;
   border-radius: 25%;
   grid-column: 2;
