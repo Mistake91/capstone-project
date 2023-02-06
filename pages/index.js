@@ -53,20 +53,6 @@ export default function HomePage({
           positionHandler(9, 3), stopWorking(9, 3);
         }}
       />
-      <Workstation
-        row={9}
-        column={4}
-        onClick={() => {
-          positionHandler(9, 4), stopWorking(9, 4);
-        }}
-      />
-      <Workstation
-        row={7}
-        column={3}
-        onClick={() => {
-          positionHandler(7, 3), stopWorking(7, 3);
-        }}
-      />
     </>
   );
 
