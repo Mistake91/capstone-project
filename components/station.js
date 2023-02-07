@@ -10,15 +10,6 @@ export const Station = styled.button`
   grid-column: ${(props) => props.column};
 `;
 
-export const Grid = styled.div`
-  width: 100%;
-  height: 100%;
-  display: grid;
-  column-gap: 4%;
-  grid-template-columns: 1fr repeat(4, 20%) 1fr;
-  grid-template-rows: repeat(13, 50px);
-`;
-
 export const Character = styled.div`
   height: 80px;
   width: 50px;

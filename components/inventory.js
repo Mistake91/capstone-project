@@ -4,25 +4,20 @@ import icon_placeholder from "../images/icon_placeholder.png";
 
 export default function Inventory({ inventory }) {
   const filteredInventory = Object.values(inventory).filter(
-    (item) => item.amount > 0
+    (item) => item.amount > 0 && item.id !== "99"
   );
   return (
     <StyledSection>
       <StyledUL>
-        {Object.values(filteredInventory).map(
-          (item) =>
-            item.id != 99 && (
-              <InventoryPlace key={item.id} row={item.row} column={item.column}>
-                <Image src={icon_placeholder} alt="" width={40} height={40} />
-                <StyledP>{item.name}</StyledP>
-                <StyledP>{item.amount}</StyledP>
-              </InventoryPlace>
-            )
-        )}
+        {Object.values(filteredInventory).map((item) => (
+          <InventoryPlace key={item.id} row={item.row} column={item.column}>
+            <Image src={icon_placeholder} alt="" width={40} height={40} />
+            <StyledP>{item.name}</StyledP>
+            <StyledP>{item.amount}</StyledP>
+          </InventoryPlace>
+        ))}
       </StyledUL>
-      <p>
-        {inventory.dwarfi.name} : {inventory.dwarfi.amount}
-      </p>
+      <p>dwarfis : {inventory.dwarfi.amount}</p>
     </StyledSection>
   );
 }

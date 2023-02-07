@@ -5,117 +5,26 @@ import { useState } from "react";
 
 export default function Sell({ inventory, setInventory }) {
   const filteredInventory = Object.values(inventory).filter(
-    (item) => item.amount > 0
+    (item) => item.amount > 0 && item.id !== "99"
   );
-  const [choosed, setChoosed] = useState(false);
-  const [choosedItem, setChoosedItem] = useState("");
+
+  const [choosen, setChoosen] = useState(false);
+  const [choosenItem, setChoosenItem] = useState("");
 
   function sellItem(amount) {
-    if (choosedItem.name === "coal" && inventory.coal.amount >= amount) {
+    if (inventory[choosenItem.identifier].amount >= amount) {
       setInventory((prevInventory) => {
         const updatedInventory = {
           ...prevInventory,
-          coal: {
-            ...prevInventory.coal,
-            amount: prevInventory.coal.amount - amount,
-          },
-          dwarfi: {
-            ...prevInventory.dwarfi,
-            amount: prevInventory.dwarfi.amount + inventory.coal.worth * amount,
-          },
-        };
-        return updatedInventory;
-      });
-    }
-    if (choosedItem.name === "iron ore" && inventory.ironore.amount >= amount) {
-      setInventory((prevInventory) => {
-        const updatedInventory = {
-          ...prevInventory,
-          ironore: {
-            ...prevInventory.ironore,
-            amount: prevInventory.ironore.amount - amount,
+          [choosenItem.identifier]: {
+            ...prevInventory[choosenItem.identifier],
+            amount: prevInventory[choosenItem.identifier].amount - amount,
           },
           dwarfi: {
             ...prevInventory.dwarfi,
             amount:
-              prevInventory.dwarfi.amount + inventory.ironore.worth * amount,
-          },
-        };
-        return updatedInventory;
-      });
-    }
-    if (choosedItem.name === "gold ore" && inventory.goldore.amount >= amount) {
-      setInventory((prevInventory) => {
-        const updatedInventory = {
-          ...prevInventory,
-          goldore: {
-            ...prevInventory.goldore,
-            amount: prevInventory.goldore.amount - amount,
-          },
-          dwarfi: {
-            ...prevInventory.dwarfi,
-            amount:
-              prevInventory.dwarfi.amount + inventory.goldore.worth * amount,
-          },
-        };
-        return updatedInventory;
-      });
-    }
-    if (
-      choosedItem.name === "iron ingot" &&
-      inventory.ironingot.amount >= amount
-    ) {
-      setInventory((prevInventory) => {
-        const updatedInventory = {
-          ...prevInventory,
-          ironingot: {
-            ...prevInventory.ironingot,
-            amount: prevInventory.ironingot.amount - amount,
-          },
-          dwarfi: {
-            ...prevInventory.dwarfi,
-            amount:
-              prevInventory.dwarfi.amount + inventory.ironingot.worth * amount,
-          },
-        };
-        return updatedInventory;
-      });
-    }
-    if (
-      choosedItem.name === "gold ingot" &&
-      inventory.goldingot.amount >= amount
-    ) {
-      setInventory((prevInventory) => {
-        const updatedInventory = {
-          ...prevInventory,
-          goldingot: {
-            ...prevInventory.goldingot,
-            amount: prevInventory.goldingot.amount - amount,
-          },
-          dwarfi: {
-            ...prevInventory.dwarfi,
-            amount:
-              prevInventory.dwarfi.amount + inventory.goldingot.worth * amount,
-          },
-        };
-        return updatedInventory;
-      });
-    }
-    if (
-      choosedItem.name === "wood sticks" &&
-      inventory.woodstick.amount >= amount
-    ) {
-      setInventory((prevInventory) => {
-        const updatedInventory = {
-          ...prevInventory,
-          woodstick: {
-            ...prevInventory.woodstick,
-            amount: prevInventory.woodstick.amount - amount,
-          },
-          dwarfi: {
-            ...prevInventory.dwarfi,
-            amount:
-              prevInventory.dwarfi.amount + inventory.woodstick.worth * amount,
+              prevInventory.dwarfi.amount +
+              inventory[choosenItem.identifier].worth * amount,
           },
         };
         return updatedInventory;
@@ -123,26 +32,23 @@ export default function Sell({ inventory, setInventory }) {
     }
   }
 
-  return !choosed ? (
+  return !choosen ? (
     <StyledSection>
       <h1>what you wanna sell?</h1>
       <StyledUL>
-        {Object.values(filteredInventory).map(
-          (item) =>
-            item.id != 99 && (
-              <StyledLi
-                key={item.id}
-                onClick={() => {
-                  setChoosed(true);
-                  setChoosedItem(item);
-                }}
-              >
-                <Image src={icon_placeholder} alt="" width={25} height={25} />
-                <p>{item.name}</p>
-                <p>{item.amount}</p>
-              </StyledLi>
-            )
-        )}
+        {Object.values(filteredInventory).map((item) => (
+          <StyledLi
+            key={item.id}
+            onClick={() => {
+              setChoosen(true);
+              setChoosenItem(item);
+            }}
+          >
+            <Image src={icon_placeholder} alt="" width={25} height={25} />
+            <p>{item.name}</p>
+            <p>{item.amount}</p>
+          </StyledLi>
+        ))}
       </StyledUL>
     </StyledSection>
   ) : (
@@ -169,13 +75,11 @@ export default function Sell({ inventory, setInventory }) {
       >
         10
       </Styledbutton>
-      <p>worth : {choosedItem.worth}</p>
-      <p>
-        {inventory.dwarfi.name} : {inventory.dwarfi.amount}
-      </p>
+      <p>worth : {choosenItem.worth}</p>
+      <p>dwarfis : {inventory.dwarfi.amount}</p>
       <Styledbutton
         onClick={() => {
-          setChoosed(false);
+          setChoosen(false);
         }}
       >
         back

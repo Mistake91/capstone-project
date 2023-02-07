@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { Station, Character } from "../components/station";
-import Sell from "@/components/sell";
-import Buy from "@/components/buy";
+import { Station, Character } from "../components/Station";
+import Sell from "@/components/Sell";
+import Buy from "@/components/Buy";
 
 export default function Market({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({

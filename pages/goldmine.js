@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { Station, Character } from "../components/station";
+import { Station, Character } from "../components/Station";
 
 export default function Goldmine({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({

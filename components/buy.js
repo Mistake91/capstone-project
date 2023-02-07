@@ -8,9 +8,6 @@ export default function Buy({ inventory, setInventory }) {
   const [choosed, setChoosed] = useState(false);
 
   function buyItem(amount) {
-    console.log(inventory.dwarfi.amount);
-    console.log(choosedItem);
-    console.log(amount * 2);
     if (
       choosedItem === "wood sticks" &&
       inventory.dwarfi.amount >= amount * 2
