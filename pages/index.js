@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { Station, Character } from "../components/Station";
-import Smeltery from "../components/Smeltery";
+import { Station, Character } from "@/components/Station";
+import Smeltery from "@/components/Smeltery";
 
 export default function HomePage({
   inventory,

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Station, Character } from "../components/Station";
+import { Station, Character } from "@/components/Station";
 
 export default function Coalmine({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({
