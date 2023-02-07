@@ -101,6 +101,26 @@ export default function Sell({ inventory, setInventory }) {
         return updatedInventory;
       });
     }
+    if (
+      choosedItem.name === "wood sticks" &&
+      inventory.woodstick.amount >= amount
+    ) {
+      setInventory((prevInventory) => {
+        const updatedInventory = {
+          ...prevInventory,
+          woodstick: {
+            ...prevInventory.woodstick,
+            amount: prevInventory.woodstick.amount - amount,
+          },
+          dwarfi: {
+            ...prevInventory.dwarfi,
+            amount:
+              prevInventory.dwarfi.amount + inventory.woodstick.worth * amount,
+          },
+        };
+        return updatedInventory;
+      });
+    }
   }
 
   return !choosed ? (
