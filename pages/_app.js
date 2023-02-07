@@ -2,7 +2,7 @@ import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 
 import GlobalStyle from "@/styles";
-import Layout from "@/components/Layout";
+import Layout from "../components/Layout";
 
 export default function App({ Component, pageProps }) {
   const [inventory, setInventory] = useLocalStorageState("inventory", {
