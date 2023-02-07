@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import { Grid } from "@/components/homeStyles";
+import { Grid } from "@/components/station";
 import Inventory from "./inventory";
 
 export default function Layout({ children, inventory }) {

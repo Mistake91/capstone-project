@@ -15,6 +15,9 @@ export default function Worldmap() {
       <WMLink row={11} column={4} href="/goldmine">
         gold
       </WMLink>
+      <WMLink row={3} column={4} href="/market">
+        market
+      </WMLink>
     </>
   );
 }

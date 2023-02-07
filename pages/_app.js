@@ -7,11 +7,19 @@ import Layout from "@/components/layout";
 export default function App({ Component, pageProps }) {
   const [inventory, setInventory] = useLocalStorageState("inventory", {
     defaultValue: {
-      coal: { amount: 10, id: "0", row: 2, column: 2, name: "coal" },
-      ironore: { amount: 10, id: "1", row: 2, column: 3, name: "iron ore" },
-      goldore: { amount: 10, id: "2", row: 2, column: 4, name: "gold ore" },
-      ironingot: { amount: 10, id: "3", row: 2, column: 5, name: "iron ingot" },
-      goldingot: { amount: 10, id: "4", row: 3, column: 2, name: "gold ingot" },
+      coal: { amount: 10, id: "0", name: "coal", worth: 1 },
+      ironore: { amount: 10, id: "1", name: "iron ore", worth: 3 },
+      goldore: { amount: 10, id: "2", name: "gold ore", worth: 5 },
+      ironingot: { amount: 10, id: "3", name: "iron ingot", worth: 10 },
+      goldingot: { amount: 10, id: "4", name: "gold ingot", worth: 15 },
+      woodstick: {
+        amount: 0,
+        id: "5",
+        name: "wood sticks",
+        worth: 1,
+        price: 2,
+      },
+      dwarfi: { amount: 10, id: "99", name: "dwarfis" },
     },
   });
 

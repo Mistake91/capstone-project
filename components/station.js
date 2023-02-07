@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Workstation = styled.button`
+export const Station = styled.button`
   width: 75px;
   height: 50px;
   border: 2px dashed black;

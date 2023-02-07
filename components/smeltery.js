@@ -33,25 +33,23 @@ export default function Smeltery({
   }, [material, inventory, smelterGold, smelterIron, stopWorking]);
 
   return (
-    <>
-      <StyledSection>
-        <h1>which ore you wanna smelt?</h1>
-        <StyledButton
-          onClick={() => {
-            setMaterial("iron");
-          }}
-        >
-          IRON
-        </StyledButton>
-        <StyledButton
-          onClick={() => {
-            setMaterial("gold");
-          }}
-        >
-          GOLD
-        </StyledButton>
-      </StyledSection>
-    </>
+    <StyledSection>
+      <h1>which ore you wanna smelt?</h1>
+      <StyledButton
+        onClick={() => {
+          setMaterial("iron");
+        }}
+      >
+        IRON
+      </StyledButton>
+      <StyledButton
+        onClick={() => {
+          setMaterial("gold");
+        }}
+      >
+        GOLD
+      </StyledButton>
+    </StyledSection>
   );
 }
 

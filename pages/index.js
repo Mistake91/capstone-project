@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import { Workstation, Character } from "../components/homeStyles";
+import { Station, Character } from "../components/station";
 import Smeltery from "../components/smeltery";
 
 export default function HomePage({
@@ -46,13 +46,15 @@ export default function HomePage({
         row={characterPosition.row}
         column={characterPosition.column}
       />
-      <Workstation
+      <Station
         row={9}
         column={3}
         onClick={() => {
-          positionHandler(9, 3), stopWorking(9, 3);
+          positionHandler(9, 3);
         }}
-      />
+      >
+        smelter
+      </Station>
     </>
   );
 
