@@ -7,7 +7,7 @@ export default function Sell({ inventory, setInventory }) {
   const filteredInventory = Object.values(inventory).filter(
     (item) => item.amount > 0
   );
-
+  const [choosed, setChoosed] = useState(false);
   const [choosedItem, setChoosedItem] = useState("");
 
   function sellItem(amount) {
@@ -102,7 +102,6 @@ export default function Sell({ inventory, setInventory }) {
       });
     }
   }
-  const [choosed, setChoosed] = useState(false);
 
   return !choosed ? (
     <StyledSection>
@@ -119,8 +118,8 @@ export default function Sell({ inventory, setInventory }) {
                 }}
               >
                 <Image src={icon_placeholder} alt="" width={25} height={25} />
-                <StyledP>{item.name}</StyledP>
-                <StyledP>{item.amount}</StyledP>
+                <p>{item.name}</p>
+                <p>{item.amount}</p>
               </StyledLi>
             )
         )}
@@ -164,6 +163,7 @@ export default function Sell({ inventory, setInventory }) {
     </StyledSection>
   );
 }
+
 const StyledSection = styled.section`
   grid-column: 2/6;
   grid-row: 2/7;
@@ -181,7 +181,6 @@ const StyledSection = styled.section`
     display: none;
   }
 `;
-
 const StyledUL = styled.ul`
   display: flex;
   flex-wrap: wrap;
@@ -192,11 +191,6 @@ const StyledLi = styled.li`
   margin: 5px 10px 0 10px;
   width: 50px;
 `;
-
-const StyledP = styled.p`
-  font-size: 10px;
-`;
-
 const Styledbutton = styled.button`
   font-size: 10px;
   width: 50px;
