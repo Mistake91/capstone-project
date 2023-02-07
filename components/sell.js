@@ -31,7 +31,6 @@ export default function Sell({ inventory, setInventory }) {
       });
     }
   }
-
   return !choosen ? (
     <StyledSection>
       <h1>what you wanna sell?</h1>

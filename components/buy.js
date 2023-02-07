@@ -83,7 +83,6 @@ export default function Buy({ inventory, setInventory }) {
     </StyledSection>
   );
 }
-
 const StyledSection = styled.section`
   grid-column: 2/6;
   grid-row: 2/7;

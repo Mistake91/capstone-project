@@ -21,7 +21,6 @@ export default function Inventory({ inventory }) {
     </StyledSection>
   );
 }
-
 const StyledSection = styled.section`
   grid-column: 2/6;
   grid-row: 6/13;

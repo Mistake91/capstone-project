@@ -9,7 +9,6 @@ export const Station = styled.button`
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;
-
 export const Character = styled.div`
   height: 80px;
   width: 50px;

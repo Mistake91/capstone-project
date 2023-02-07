@@ -15,7 +15,6 @@ export default function Layout({ children, inventory }) {
       location.pathname = "/worldmap";
     }
   }
-
   return (
     <Grid>
       {children}
