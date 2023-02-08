@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import { Grid } from "@/components/homeStyles";
-import Inventory from "./inventory";
+import Inventory from "./Inventory";
 
 export default function Layout({ children, inventory }) {
   const router = useRouter();
@@ -16,7 +15,6 @@ export default function Layout({ children, inventory }) {
       location.pathname = "/worldmap";
     }
   }
-
   return (
     <Grid>
       {children}
@@ -49,4 +47,13 @@ const InventoryButton = styled.button`
   grid-column: 2;
   grid-row: 13;
   margin-top: 25px;
+`;
+
+const Grid = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  column-gap: 4%;
+  grid-template-columns: 1fr repeat(4, 20%) 1fr;
+  grid-template-rows: repeat(13, 50px);
 `;

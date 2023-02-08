@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { Workstation, Character } from "../components/homeStyles";
+import { Station, Character } from "@/components/Station";
 
 export default function Coalmine({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({
@@ -50,21 +50,21 @@ export default function Coalmine({ inventory, setInventory }) {
         row={characterPosition.row}
         column={characterPosition.column}
       />
-      <Workstation
+      <Station
         row={3}
         column={3}
         onClick={() => {
           positionHandler(3, 3);
         }}
       />
-      <Workstation
+      <Station
         row={6}
         column={4}
         onClick={() => {
           positionHandler(6, 4);
         }}
       />
-      <Workstation
+      <Station
         row={9}
         column={3}
         onClick={() => {

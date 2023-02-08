@@ -1,40 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 import { Station, Character } from "@/components/Station";
+import Sell from "@/components/Sell";
+import Buy from "@/components/Buy";
 
-export default function Ironmine({ inventory, setInventory }) {
+export default function Market({ inventory, setInventory }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
-
   const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
-
-  const [isWorking, setIsWorking] = useState(null);
-
-  useEffect(() => {
-    if (isWorking) {
-      const interval = setInterval(() => {
-        setInventory((prevInventory) => {
-          const updatedInventory = {
-            ...prevInventory,
-            ironore: {
-              ...prevInventory.ironore,
-              amount: prevInventory.ironore.amount + 1,
-            },
-          };
-          return updatedInventory;
-        });
-      }, 2000);
-      return () => clearInterval(interval);
-    }
-  }, [setInventory, isWorking]);
 
   return (
     <>
       {isStopButtonVisible && (
-        <StyledButton
+        <StyledStopButton
           row={characterPosition.row + 2}
           column={characterPosition.column}
           onClick={() => {
@@ -43,7 +24,13 @@ export default function Ironmine({ inventory, setInventory }) {
           }}
         >
           STOP
-        </StyledButton>
+        </StyledStopButton>
+      )}
+      {characterPosition.row === 8 && characterPosition.column === 4 && (
+        <Sell inventory={inventory} setInventory={setInventory} />
+      )}
+      {characterPosition.row === 8 && characterPosition.column === 3 && (
+        <Buy inventory={inventory} setInventory={setInventory} />
       )}
 
       <Character
@@ -51,42 +38,52 @@ export default function Ironmine({ inventory, setInventory }) {
         column={characterPosition.column}
       />
       <Station
-        row={3}
+        row={8}
         column={3}
         onClick={() => {
-          positionHandler(3, 3);
+          positionHandler(8, 3);
         }}
-      />
+      >
+        BUY
+      </Station>
       <Station
-        row={6}
+        row={8}
         column={4}
         onClick={() => {
-          positionHandler(6, 4);
+          positionHandler(8, 4);
         }}
-      />
-      <Station
-        row={9}
-        column={3}
-        onClick={() => {
-          positionHandler(9, 3);
-        }}
-      />
+      >
+        SELL
+      </Station>
     </>
   );
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
     setIsStopButtonVisible(true);
-    setIsWorking(inventory);
   }
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
-    setIsWorking(false);
   }
 }
 
+const StyledSection = styled.section`
+  grid-column: 2/6;
+  grid-row: 2/7;
+  background-color: red;
+  border-radius: 10%;
+  display: grid;
+  text-align: center;
+`;
+
 const StyledButton = styled.button`
+  width: 100px;
+  height: 50px;
+  margin: 0 auto 0 auto;
+`;
+
+const StyledStopButton = styled.button`
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;
