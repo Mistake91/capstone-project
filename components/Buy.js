@@ -47,7 +47,7 @@ export default function Buy({ inventory, setInventory }) {
     </StyledSection>
   ) : (
     <StyledSection>
-      <h1>how much you wanna buy?</h1>
+      <h1>how much wood sticks you wanna buy?</h1>
       <Styledbutton
         onClick={() => {
           buyItem(1);
