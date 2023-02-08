@@ -52,7 +52,7 @@ export default function Sell({ inventory, setInventory }) {
     </StyledSection>
   ) : (
     <StyledSection>
-      <h1>how much you wanna sell?</h1>
+      <h1>how much {choosenItem.name} you wanna sell?</h1>
       <Styledbutton
         onClick={() => {
           sellItem(1);
