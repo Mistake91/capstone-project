@@ -35,6 +35,7 @@ export default function Coalmine({ inventory, setInventory }) {
     <>
       {isStopButtonVisible && (
         <StyledButton
+          type="button"
           row={characterPosition.row + 2}
           column={characterPosition.column}
           onClick={() => {

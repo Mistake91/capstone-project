@@ -43,6 +43,7 @@ export default function HomePage({
 
       {isStopButtonVisible && (
         <StyledButton
+          type="button"
           row={characterPosition.row + 2}
           column={characterPosition.column}
           onClick={() => {

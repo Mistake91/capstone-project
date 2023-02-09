@@ -18,8 +18,11 @@ export default function Layout({ children, inventory }) {
   return (
     <Grid>
       {children}
-      <WorldmapButton onClick={worldmapButton}>Worldmap</WorldmapButton>
+      <WorldmapButton type="button" onClick={worldmapButton}>
+        Worldmap
+      </WorldmapButton>
       <InventoryButton
+        type="button"
         onClick={() => {
           setInventoryState(!inventoryState);
         }}

@@ -36,6 +36,7 @@ export default function Smeltery({
     <StyledSection>
       <h1>which ore you wanna smelt?</h1>
       <StyledButton
+        type="button"
         onClick={() => {
           setMaterial("iron");
         }}
@@ -43,6 +44,7 @@ export default function Smeltery({
         IRON
       </StyledButton>
       <StyledButton
+        type="button"
         onClick={() => {
           setMaterial("gold");
         }}

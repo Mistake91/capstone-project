@@ -54,6 +54,7 @@ export default function Sell({ inventory, setInventory }) {
     <StyledSection>
       <h1>how much {choosenItem.name} you wanna sell?</h1>
       <Styledbutton
+        type="button"
         onClick={() => {
           sellItem(1);
         }}
@@ -61,6 +62,7 @@ export default function Sell({ inventory, setInventory }) {
         1
       </Styledbutton>
       <Styledbutton
+        type="button"
         onClick={() => {
           sellItem(5);
         }}
@@ -68,6 +70,7 @@ export default function Sell({ inventory, setInventory }) {
         5
       </Styledbutton>
       <Styledbutton
+        type="button"
         onClick={() => {
           sellItem(10);
         }}
@@ -77,6 +80,7 @@ export default function Sell({ inventory, setInventory }) {
       <p>worth : {choosenItem.worth}</p>
       <p>dwarfis : {inventory.dwarfi.amount}</p>
       <Styledbutton
+        type="button"
         onClick={() => {
           setChoosen(false);
         }}

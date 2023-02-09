@@ -31,6 +31,7 @@ export default function Anvil({
     <StyledSection>
       <h1>what you wanna craft?</h1>
       <StyledButton
+        type="button"
         onClick={() => {
           setMaterial("gear");
         }}
@@ -38,6 +39,7 @@ export default function Anvil({
         GEAR
       </StyledButton>
       <StyledButton
+        type="button"
         onClick={() => {
           setMaterial("goldarmorplate");
         }}
