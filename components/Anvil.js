@@ -8,6 +8,7 @@ export default function Anvil({
   craftGear,
 }) {
   const [material, setMaterial] = useState(null);
+  const [notEnough, setNotEnough] = useState(false);
 
   useEffect(() => {
     if (material) {
@@ -19,34 +20,60 @@ export default function Anvil({
           inventory.goldingot.amount >= 5
         ) {
           craftGoldArmorPlate();
-        } else {
-          stopWorking(9, 4);
         }
       }, 3000);
+      if (
+        (material === "gear" && inventory.ironingot.amount < 1) ||
+        (material === "goldarmorplate" && inventory.goldingot.amount < 5)
+      ) {
+        setMaterial(null);
+        setNotEnough(true);
+        stopWorking(9, 4);
+      }
       return () => clearInterval(interval);
     }
-  }, [material, inventory, craftGear, craftGoldArmorPlate, stopWorking]);
+  }, [
+    material,
+    inventory,
+    craftGear,
+    craftGoldArmorPlate,
+    stopWorking,
+    setNotEnough,
+    notEnough,
+  ]);
 
   return (
-    <StyledSection>
-      <h1>what you wanna craft?</h1>
-      <StyledButton
-        type="button"
-        onClick={() => {
-          setMaterial("gear");
-        }}
-      >
-        GEAR
-      </StyledButton>
-      <StyledButton
-        type="button"
-        onClick={() => {
-          setMaterial("goldarmorplate");
-        }}
-      >
-        GOLD BRACLET
-      </StyledButton>
-    </StyledSection>
+    <>
+      <StyledSection>
+        <h1>what you wanna craft?</h1>
+        <StyledButton
+          type="button"
+          onClick={() => {
+            setMaterial("gear");
+          }}
+        >
+          GEAR
+        </StyledButton>
+        <StyledP>need 1x iron ingot for 2x gear</StyledP>
+        <StyledButton
+          type="button"
+          onClick={() => {
+            setMaterial("goldarmorplate");
+          }}
+        >
+          GOLD BRACLET
+        </StyledButton>
+        <StyledP>need 5x gold ingot for 1x gold armor plate</StyledP>
+      </StyledSection>
+      {notEnough === true && (
+        <StyledSection>
+          <h2>I dont have enough materials</h2>
+          <StyledButton type="button" onClick={() => setNotEnough(false)}>
+            Back
+          </StyledButton>
+        </StyledSection>
+      )}
+    </>
   );
 }
 const StyledSection = styled.section`
@@ -62,4 +89,8 @@ const StyledButton = styled.button`
   width: 100px;
   height: 50px;
   margin: 0 auto 0 auto;
+`;
+
+const StyledP = styled.p`
+  font-size: 10px;
 `;
