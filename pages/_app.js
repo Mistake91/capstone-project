@@ -37,12 +37,26 @@ export default function App({ Component, pageProps }) {
         identifier: "goldingot",
       },
       woodstick: {
-        amount: 0,
+        amount: 1,
         id: "5",
         name: "wood sticks",
         worth: 1,
         price: 2,
         identifier: "woodstick",
+      },
+      gear: {
+        amount: 1,
+        id: "6",
+        name: "gear",
+        worth: 7,
+        identifier: "gear",
+      },
+      goldarmorplate: {
+        amount: 1,
+        id: "7",
+        name: "gold armor plate",
+        worth: 70,
+        identifier: "goldarmorplate",
       },
       dwarfi: { amount: 10, id: "99", name: "dwarfi" },
     },
@@ -89,6 +103,40 @@ export default function App({ Component, pageProps }) {
     });
   }
 
+  function craftGear() {
+    setInventory((prevInventory) => {
+      const updatedInventory = {
+        ...prevInventory,
+        ironingot: {
+          ...prevInventory.ironingot,
+          amount: prevInventory.ironingot.amount - 1,
+        },
+        gear: {
+          ...prevInventory.gear,
+          amount: prevInventory.gear.amount + 2,
+        },
+      };
+      return updatedInventory;
+    });
+  }
+
+  function craftGoldArmorPlate() {
+    setInventory((prevInventory) => {
+      const updatedInventory = {
+        ...prevInventory,
+        goldingot: {
+          ...prevInventory.goldingot,
+          amount: prevInventory.goldingot.amount - 5,
+        },
+        goldarmorplate: {
+          ...prevInventory.goldarmorplate,
+          amount: prevInventory.goldarmorplate.amount + 1,
+        },
+      };
+      return updatedInventory;
+    });
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -103,6 +151,8 @@ export default function App({ Component, pageProps }) {
           setInventory={setInventory}
           smelterIron={smelterIron}
           smelterGold={smelterGold}
+          craftGear={craftGear}
+          craftGoldArmorPlate={craftGoldArmorPlate}
         />
       </Layout>
     </>

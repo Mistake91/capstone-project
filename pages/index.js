@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 import { Station, Character } from "@/components/Station";
 import Smeltery from "@/components/Smeltery";
+import Anvil from "@/components/Anvil";
 
 export default function HomePage({
   inventory,
   setInventory,
   smelterIron,
   smelterGold,
+  craftGear,
+  craftGoldArmorPlate,
 }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
@@ -28,9 +31,19 @@ export default function HomePage({
           smelterGold={smelterGold}
         />
       )}
+      {characterPosition.row === 9 && characterPosition.column === 4 && (
+        <Anvil
+          inventory={inventory}
+          setInventory={setInventory}
+          stopWorking={stopWorking}
+          craftGear={craftGear}
+          craftGoldArmorPlate={craftGoldArmorPlate}
+        />
+      )}
 
       {isStopButtonVisible && (
         <StyledButton
+          type="button"
           row={characterPosition.row + 2}
           column={characterPosition.column}
           onClick={() => {
@@ -54,6 +67,15 @@ export default function HomePage({
         }}
       >
         smelter
+      </Station>
+      <Station
+        row={9}
+        column={4}
+        onClick={() => {
+          positionHandler(9, 4, setCharacterPositon);
+        }}
+      >
+        anvil
       </Station>
     </>
   );

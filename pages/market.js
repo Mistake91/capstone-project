@@ -16,6 +16,7 @@ export default function Market({ inventory, setInventory }) {
     <>
       {isStopButtonVisible && (
         <StyledStopButton
+          type="button"
           row={characterPosition.row + 2}
           column={characterPosition.column}
           onClick={() => {

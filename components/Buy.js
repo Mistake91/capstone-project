@@ -49,6 +49,7 @@ export default function Buy({ inventory, setInventory }) {
     <StyledSection>
       <h1>how much wood sticks you wanna buy?</h1>
       <Styledbutton
+        type="button"
         onClick={() => {
           buyItem(1);
         }}
@@ -56,6 +57,7 @@ export default function Buy({ inventory, setInventory }) {
         1
       </Styledbutton>
       <Styledbutton
+        type="button"
         onClick={() => {
           buyItem(5);
         }}
@@ -63,6 +65,7 @@ export default function Buy({ inventory, setInventory }) {
         5
       </Styledbutton>
       <Styledbutton
+        type="button"
         onClick={() => {
           buyItem(10);
         }}
@@ -74,6 +77,7 @@ export default function Buy({ inventory, setInventory }) {
         {inventory.dwarfi.name} : {inventory.dwarfi.amount}
       </p>
       <Styledbutton
+        type="button"
         onClick={() => {
           setChoosed(false);
         }}
