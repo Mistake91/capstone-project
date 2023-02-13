@@ -15,7 +15,6 @@ export default function App({ Component, pageProps }) {
   const [achievements, setAchievements] = useLocalStorageState("achievements", {
     defaultValue: AchievementList,
   });
-  console.log(achievements);
   const ironIngotAchievements = Object.values(achievements).filter(
     (achievement) => achievement.material === "ironingot"
   );
