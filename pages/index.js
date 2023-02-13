@@ -11,7 +11,7 @@ export default function HomePage({
   smelterIron,
   smelterGold,
   craftGear,
-  craftGoldArmorPlate,
+  craftGoldArmor,
 }) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
@@ -37,7 +37,7 @@ export default function HomePage({
           setInventory={setInventory}
           stopWorking={stopWorking}
           craftGear={craftGear}
-          craftGoldArmorPlate={craftGoldArmorPlate}
+          craftGoldArmor={craftGoldArmor}
         />
       )}
 

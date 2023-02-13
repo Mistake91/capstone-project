@@ -15,12 +15,22 @@ export default function Layout({ children, inventory }) {
       location.pathname = "/worldmap";
     }
   }
+  function achievementButton() {
+    if (location.pathname === "/achievement") {
+      router.back();
+    } else {
+      location.pathname = "/achievement";
+    }
+  }
   return (
     <Grid>
       {children}
       <WorldmapButton type="button" onClick={worldmapButton}>
         Worldmap
       </WorldmapButton>
+      <AchievementButton type="button" onClick={achievementButton}>
+        Achievement
+      </AchievementButton>
       <InventoryButton
         type="button"
         onClick={() => {
@@ -49,6 +59,15 @@ const InventoryButton = styled.button`
   border-radius: 25%;
   grid-column: 2;
   grid-row: 13;
+  margin-top: 25px;
+`;
+
+const AchievementButton = styled.button`
+  width: 70px;
+  height: 25px;
+  border-radius: 25%;
+  grid-column: 5;
+  grid-row: 1;
   margin-top: 25px;
 `;
 
