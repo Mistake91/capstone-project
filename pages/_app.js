@@ -51,12 +51,12 @@ export default function App({ Component, pageProps }) {
         worth: 7,
         identifier: "gear",
       },
-      goldarmorplate: {
+      goldarmor: {
         amount: 1,
         id: "7",
-        name: "gold armor plate",
+        name: "gold armor",
         worth: 70,
-        identifier: "goldarmorplate",
+        identifier: "goldarmor",
       },
       dwarfi: { amount: 10, id: "99", name: "dwarfi" },
     },
@@ -120,7 +120,7 @@ export default function App({ Component, pageProps }) {
     });
   }
 
-  function craftGoldArmorPlate() {
+  function craftGoldArmor() {
     setInventory((prevInventory) => {
       const updatedInventory = {
         ...prevInventory,
@@ -128,9 +128,9 @@ export default function App({ Component, pageProps }) {
           ...prevInventory.goldingot,
           amount: prevInventory.goldingot.amount - 5,
         },
-        goldarmorplate: {
-          ...prevInventory.goldarmorplate,
-          amount: prevInventory.goldarmorplate.amount + 1,
+        goldarmor: {
+          ...prevInventory.goldarmor,
+          amount: prevInventory.goldarmor.amount + 1,
         },
       };
       return updatedInventory;
@@ -152,7 +152,7 @@ export default function App({ Component, pageProps }) {
           smelterIron={smelterIron}
           smelterGold={smelterGold}
           craftGear={craftGear}
-          craftGoldArmorPlate={craftGoldArmorPlate}
+          craftGoldArmor={craftGoldArmor}
         />
       </Layout>
     </>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function Anvil({
   inventory,
   stopWorking,
-  craftGoldArmorPlate,
+  craftGoldArmor,
   craftGear,
 }) {
   const [material, setMaterial] = useState(null);
@@ -16,15 +16,15 @@ export default function Anvil({
         if (material === "gear" && inventory.ironingot.amount >= 1) {
           craftGear();
         } else if (
-          material === "goldarmorplate" &&
+          material === "goldarmor" &&
           inventory.goldingot.amount >= 5
         ) {
-          craftGoldArmorPlate();
+          craftGoldArmor();
         }
       }, 3000);
       if (
         (material === "gear" && inventory.ironingot.amount < 1) ||
-        (material === "goldarmorplate" && inventory.goldingot.amount < 5)
+        (material === "goldarmor" && inventory.goldingot.amount < 5)
       ) {
         setMaterial(null);
         setNotEnough(true);
@@ -36,7 +36,7 @@ export default function Anvil({
     material,
     inventory,
     craftGear,
-    craftGoldArmorPlate,
+    craftGoldArmor,
     stopWorking,
     setNotEnough,
     notEnough,
@@ -58,7 +58,7 @@ export default function Anvil({
         <StyledButton
           type="button"
           onClick={() => {
-            setMaterial("goldarmorplate");
+            setMaterial("goldarmor");
           }}
         >
           GOLD BRACLET
