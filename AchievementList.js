@@ -1,4 +1,4 @@
-export const bchievements = {
+export const AchievementList = {
   1: {
     name: "10x coal mined",
     id: 0,

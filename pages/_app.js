@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import GlobalStyle from "@/styles";
 import Layout from "@/components/Layout";
-import { bchievements } from "@/db";
+import { AchievementList } from "@/AchievementList";
 import { InventoryLS } from "../InventoryLS";
 
 export default function App({ Component, pageProps }) {
@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
   });
 
   const [achievements, setAchievements] = useLocalStorageState("achievements", {
-    defaultValue: bchievements,
+    defaultValue: AchievementList,
   });
   console.log(achievements);
   const ironIngotAchievements = Object.values(achievements).filter(
