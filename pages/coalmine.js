@@ -3,17 +3,27 @@ import styled from "styled-components";
 
 import { Station, Character } from "@/components/Station";
 
-export default function Coalmine({ inventory, setInventory }) {
+export default function Coalmine({
+  inventory,
+  setInventory,
+  achievements,
+  setAchievements,
+}) {
   const [characterPosition, setCharacterPositon] = useState({
     row: 9,
     column: 2,
   });
-
   const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
-
   const [isWorking, setIsWorking] = useState(null);
-
+  const coalAchievements = Object.values(achievements).filter(
+    (achievement) => achievement.material === "coal"
+  );
   useEffect(() => {
+    Object.values(coalAchievements).map((achievement) => {
+      if (inventory.coal.overallAmount === achievement.amount) {
+        setAchievements(achievements, (achievement.unlocked = true));
+      }
+    });
     if (isWorking) {
       const interval = setInterval(() => {
         setInventory((prevInventory) => {
@@ -22,15 +32,23 @@ export default function Coalmine({ inventory, setInventory }) {
             coal: {
               ...prevInventory.coal,
               amount: prevInventory.coal.amount + 1,
+              overallAmount: prevInventory.coal.overallAmount + 1,
             },
           };
           return updatedInventory;
         });
       }, 2000);
+
       return () => clearInterval(interval);
     }
-  }, [setInventory, isWorking]);
-
+  }, [
+    inventory,
+    isWorking,
+    setInventory,
+    achievements,
+    setAchievements,
+    coalAchievements,
+  ]);
   return (
     <>
       {isStopButtonVisible && (

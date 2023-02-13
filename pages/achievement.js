@@ -1,24 +1,40 @@
 import styled from "styled-components";
 
-import { achievements } from "@/db";
 import AchievementCard from "@/components/AchievementCard";
 
-export default function achievementPage() {
+export default function achievementPage({ achievements }) {
+  const unlockedAV = Object.values(achievements).filter(
+    (achievement) => achievement.unlocked === true
+  );
+  const lockedAV = Object.values(achievements).filter(
+    (achievement) => achievement.unlocked === false
+  );
+
   return (
     <StyledSection>
       <ul>
-        {achievements.map((achievement) => (
-          <StyledLi key={achievement.id}>
+        {Object.values(unlockedAV).map((achievement) => (
+          <StyledUnlockedLi key={achievement.id}>
             <AchievementCard name={achievement.name} />
-          </StyledLi>
+          </StyledUnlockedLi>
+        ))}
+        {Object.values(lockedAV).map((achievement) => (
+          <StyledLockedLi key={achievement.id}>
+            <AchievementCard name={achievement.name} />
+          </StyledLockedLi>
         ))}
       </ul>
     </StyledSection>
   );
 }
 
-const StyledLi = styled.li`
+const StyledLockedLi = styled.li`
   border: solid black 3px;
+  list-style: none;
+  margin-top: 5px;
+`;
+const StyledUnlockedLi = styled.li`
+  border: solid gold 3px;
   list-style: none;
   margin-top: 5px;
 `;
