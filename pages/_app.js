@@ -1,17 +1,19 @@
 import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import styled, { keyframes } from "styled-components";
 
 import GlobalStyle from "@/styles";
-import Layout from "@/components/Layout";
+import Layout from "@/components/Layout/Layout";
 import { AchievementList } from "@/AchievementList";
 import { InventoryLS } from "../InventoryLS";
+import UnlockedAV from "../images/Globals/UnlockedAchievement.png";
 
 export default function App({ Component, pageProps }) {
   const [inventory, setInventory] = useLocalStorageState("inventory", {
     defaultValue: InventoryLS,
   });
-
   const [achievements, setAchievements] = useLocalStorageState("achievements", {
     defaultValue: AchievementList,
   });
@@ -21,6 +23,25 @@ export default function App({ Component, pageProps }) {
   const goldIngotAchievements = Object.values(achievements).filter(
     (achievement) => achievement.material === "goldingot"
   );
+  const lockedAVS = Object.values(achievements).filter(
+    (achievement) => achievement.unlocked === false
+  );
+  const [notification, setNotification] = useState("");
+  const [achiiname, setAchiiname] = useState("");
+  useEffect(() => {
+    Object.values(lockedAVS).map((achievement) => {
+      if (achievement.unlocked === true) {
+        setNotification("show");
+        setAchiiname(achievement.name);
+        const interval = setInterval(() => {
+          setNotification("hide");
+          console.log("hallo");
+          clearInterval(interval);
+        }, 5000);
+      }
+    });
+  }, [lockedAVS, notification]);
+
   useEffect(() => {
     Object.values(ironIngotAchievements).map((achievement) => {
       if (inventory.ironingot.overallAmount === achievement.amount) {
@@ -56,6 +77,7 @@ export default function App({ Component, pageProps }) {
       return updatedInventory;
     });
   }
+
   function smelterGold() {
     setInventory((prevInventory) => {
       const updatedInventory = {
@@ -89,7 +111,6 @@ export default function App({ Component, pageProps }) {
         gear: {
           ...prevInventory.gear,
           amount: prevInventory.gear.amount + 2,
-          overallAmount: prevInventory.gear.overallAmount + 2,
         },
       };
       return updatedInventory;
@@ -107,12 +128,17 @@ export default function App({ Component, pageProps }) {
         goldarmor: {
           ...prevInventory.goldarmor,
           amount: prevInventory.goldarmor.amount + 1,
-          overallAmount: prevInventory.goldarmor.overallAmount + 1,
         },
       };
       return updatedInventory;
     });
   }
+
+  const [activity, setActivity] = useState("idle");
+  const [characterPosition, setCharacterPositon] = useState({
+    row: 16,
+    column: 3,
+  });
 
   return (
     <>
@@ -120,8 +146,11 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Capstone Project</title>
       </Head>
-
       <Layout inventory={inventory}>
+        <StyledDiv className={notification}>
+          <Image src={UnlockedAV} alt="notification" />
+          <StyledP>{achiiname}</StyledP>
+        </StyledDiv>
         <Component
           {...pageProps}
           inventory={inventory}
@@ -130,6 +159,10 @@ export default function App({ Component, pageProps }) {
           smelterGold={smelterGold}
           craftGear={craftGear}
           craftGoldArmor={craftGoldArmor}
+          activity={activity}
+          setActivity={setActivity}
+          characterPosition={characterPosition}
+          setCharacterPositon={setCharacterPositon}
           achievements={achievements}
           setAchievements={setAchievements}
         />
@@ -137,3 +170,29 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
+const StyledDiv = styled.div`
+  z-index: 99;
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  width: 100%;
+  &.show {
+    transition: opacity 1s ease-in-out;
+    top: 2rem;
+    opacity: 1;
+  }
+  &.hide {
+    transition: opacity 1s ease-out;
+    top: 2rem;
+    opacity: 0;
+  }
+`;
+const StyledP = styled.p`
+  position: absolute;
+  font-size: 10px;
+  top: 40%;
+  left: 40%;
+  text-align: center;
+  width: 120px;
+`;

@@ -1,9 +1,19 @@
-import { useState } from "react";
-import styled from "styled-components";
+import Image from "next/image";
 
-import { Station, Character } from "@/components/Station";
-import Smeltery from "@/components/Smeltery";
-import Anvil from "@/components/Anvil";
+import Home_Frame from "../images/Home/Home_Frame.png";
+
+import Smeltery from "@/components/Smeltery/Smeltery";
+import Anvil from "@/components/Anvil/Anvil";
+import IdleAnimation from "@/components/Animations/IdleAnimation";
+import SmelterAnimation from "@/components/Animations/SmelterAnimation";
+import SmeltAnimation from "@/components/Animations/SmeltAnimation";
+import HammerAnimation from "@/components/Animations/HammerAnimation";
+import {
+  StyledDiv,
+  CharacterDiv,
+  AnvilStation,
+  SmelterStation,
+} from "./styles";
 
 export default function HomePage({
   inventory,
@@ -12,85 +22,77 @@ export default function HomePage({
   smelterGold,
   craftGear,
   craftGoldArmor,
+  activity,
+  setActivity,
+  characterPosition,
+  setCharacterPositon,
 }) {
-  const [characterPosition, setCharacterPositon] = useState({
-    row: 9,
-    column: 2,
-  });
-
-  const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
-
   return (
     <>
-      {characterPosition.row === 9 && characterPosition.column === 3 && (
+      <StyledDiv>
+        <Image src={Home_Frame} alt="Background" />
+      </StyledDiv>
+      {characterPosition.row === 9 && characterPosition.column === 5 && (
         <Smeltery
           inventory={inventory}
           setInventory={setInventory}
           stopWorking={stopWorking}
           smelterIron={smelterIron}
           smelterGold={smelterGold}
+          setActivity={setActivity}
         />
       )}
-      {characterPosition.row === 9 && characterPosition.column === 4 && (
+      {characterPosition.row === 20 && characterPosition.column === 6 && (
         <Anvil
           inventory={inventory}
           setInventory={setInventory}
           stopWorking={stopWorking}
           craftGear={craftGear}
           craftGoldArmor={craftGoldArmor}
+          setActivity={setActivity}
         />
       )}
 
-      {isStopButtonVisible && (
-        <StyledButton
-          type="button"
-          row={characterPosition.row + 2}
-          column={characterPosition.column}
-          onClick={() => {
-            setIsStopButtonVisible(false);
-            stopWorking(9, 2);
-          }}
-        >
-          STOP
-        </StyledButton>
-      )}
-
-      <Character
+      <CharacterDiv
         row={characterPosition.row}
         column={characterPosition.column}
+      >
+        {activity === "idle" ? (
+          <IdleAnimation />
+        ) : activity === "smelt" ? (
+          <SmeltAnimation />
+        ) : activity === "hammer" ? (
+          <HammerAnimation />
+        ) : (
+          <IdleAnimation />
+        )}
+      </CharacterDiv>
+
+      <SmelterStation
+        onClick={() => {
+          stopWorking(9, 5);
+          positionHandler(9, 5, setCharacterPositon);
+        }}
+      >
+        <SmelterAnimation />
+      </SmelterStation>
+      <AnvilStation
+        row={20}
+        column={6}
+        onClick={() => {
+          stopWorking(20, 6);
+          positionHandler(20, 6, setCharacterPositon);
+        }}
       />
-      <Station
-        row={9}
-        column={3}
-        onClick={() => {
-          positionHandler(9, 3, setCharacterPositon);
-        }}
-      >
-        smelter
-      </Station>
-      <Station
-        row={9}
-        column={4}
-        onClick={() => {
-          positionHandler(9, 4, setCharacterPositon);
-        }}
-      >
-        anvil
-      </Station>
     </>
   );
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    setIsStopButtonVisible(true);
   }
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
+    setActivity("idle");
   }
 }
-
-const StyledButton = styled.button`
-  grid-row: ${(props) => props.row};
-  grid-column: ${(props) => props.column};
-`;
