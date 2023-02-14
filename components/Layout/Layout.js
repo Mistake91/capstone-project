@@ -8,7 +8,7 @@ import Chest_Open from "../../images/Globals/Chest_Open.png";
 import Trophy from "../../images/Globals/Trophy.png";
 
 import Inventory from "../Inventory/Inventory";
-import { StyledButton, Grid, GridDiv } from "./Styles";
+import { StyledButton, Grid, GridDiv } from "./Layout.styles";
 
 export default function Layout({ children, inventory }) {
   const router = useRouter();
