@@ -5,7 +5,7 @@ import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 
 import GlobalStyle from "@/styles";
-import Layout from "@/components/Layout/Layout";
+import Layout from "@/components/Layout";
 import { AchievementList } from "@/AchievementList";
 import { InventoryLS } from "../InventoryLS";
 import UnlockedAV from "../images/Globals/UnlockedAchievement.png";
@@ -177,6 +177,8 @@ const StyledDiv = styled.div`
   opacity: 0;
   justify-content: center;
   width: 100%;
+  pointer-events: none;
+
   &.show {
     transition: opacity 1s ease-in-out;
     top: 2rem;

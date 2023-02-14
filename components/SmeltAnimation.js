@@ -1,12 +1,12 @@
-import Mining1 from "../../images/Character/Pickaxe1.png";
-import Mining2 from "../../images/Character/Pickaxe2.png";
+import Smelter1 from "../images/Character/Smelter1.png";
+import Smelter2 from "../images/Character/Smelter2.png";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const images = [Mining1, Mining2];
+const images = [Smelter1, Smelter2];
 
-export default function MiningAnimation() {
+export default function SmeltAnimation() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {

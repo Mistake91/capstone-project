@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import styled from "styled-components";
 
-import FieldButton from "../../images/Globals/FieldButton.png";
-import TextField from "../../images/Globals/TextField.png";
-import XButton from "../../images/Globals/XButton.png";
-import {
-  StyledSection,
-  StyledButtonDiv,
-  StyledMainP,
-  StyledXDiv,
-  StyledP,
-  StyledBackDiv,
-  StyledbackP,
-  NeedP,
-} from "./Anvil.styles.js";
+import FieldButton from "../images/Globals/FieldButton.png";
+import TextField from "../images/Globals/TextField.png";
+import XButton from "../images/Globals/XButton.png";
+
 export default function Anvil({
   inventory,
   stopWorking,
@@ -117,3 +109,67 @@ export default function Anvil({
     </>
   );
 }
+
+const StyledSection = styled.section`
+  z-index: 1;
+  grid-column: 3;
+  grid-row: 2;
+  text-align: center;
+`;
+const StyledButtonDiv = styled.div`
+  z-index: 2;
+  width: 100px;
+  height: 50px;
+  margin-left: ${(props) => props.marginleft};
+  grid-column: ${(props) => props.column};
+  grid-row: 6;
+`;
+const StyledXDiv = styled.div`
+  z-index: 2;
+  grid-column: 8;
+  grid-row: 1;
+  margin: 10px 0 0 10px;
+`;
+const StyledbackP = styled.div`
+  z-index: 2;
+  font-size: 10px;
+  margin: 13px 0 0 0;
+  grid-row: 6;
+  grid-column: 5;
+  margin-left: 10px;
+  pointer-events: none;
+`;
+const StyledBackDiv = styled.div`
+  z-index: 1;
+  grid-row: 6;
+  grid-column: 5;
+  margin-left: 6px;
+  width: 100px;
+  height: 50px;
+`;
+const StyledMainP = styled.p`
+  z-index: 2;
+  grid-column: 2;
+  grid-row: 3;
+  margin-left: 45px;
+  width: 200px;
+  text-align: center;
+  font-size: 14px;
+`;
+const NeedP = styled.p`
+  z-index: 3;
+  width: 75px;
+  grid-row: 5;
+  margin-left: ${(props) => props.marginleft};
+  grid-column: ${(props) => props.column};
+  font-size: 8px;
+  text-align: center;
+`;
+const StyledP = styled.p`
+  z-index: 3;
+  grid-row: 6;
+  font-size: 7px;
+  pointer-events: none;
+  margin: ${(props) => props.margin};
+  grid-column: ${(props) => props.column};
+`;

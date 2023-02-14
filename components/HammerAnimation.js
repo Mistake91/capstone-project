@@ -1,14 +1,12 @@
-import Smelter1 from "../../images/Home/Smelter1.png";
-import Smelter2 from "../../images/Home/Smelter2.png";
-import Smelter3 from "../../images/Home/Smelter3.png";
-import Smelter4 from "../../images/Home/Smelter4.png";
+import Hammer1 from "../images/Character/Hammer1.png";
+import Hammer2 from "../images/Character/Hammer2.png";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const images = [Smelter1, Smelter2, Smelter3, Smelter4];
+const images = [Hammer1, Hammer2];
 
-export default function SmelterAnimation() {
+export default function HammerAnimation() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -18,10 +16,10 @@ export default function SmelterAnimation() {
       } else {
         setCurrentIndex(currentIndex + 1);
       }
-    }, 300);
+    }, 500);
 
     return () => clearInterval(intervalId);
   }, [currentIndex]);
 
-  return <Image src={images[currentIndex]} alt="Smelter" />;
+  return <Image src={images[currentIndex]} alt="Character" />;
 }

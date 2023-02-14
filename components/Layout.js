@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
+import styled from "styled-components";
 
-import WorldmapButton from "../../images/Globals/WorldmapButton.png";
-import Chest_Closed from "../../images/Globals/Chest_Closed.png";
-import Chest_Open from "../../images/Globals/Chest_Open.png";
-import Trophy from "../../images/Globals/Trophy.png";
+import WorldmapButton from "../images/Globals/WorldmapButton.png";
+import Chest_Closed from "../images/Globals/Chest_Closed.png";
+import Chest_Open from "../images/Globals/Chest_Open.png";
+import Trophy from "../images/Globals/Trophy.png";
 
-import Inventory from "../Inventory/Inventory";
-import { StyledButton, Grid, GridDiv } from "./Layout.styles.js";
+import Inventory from "./Inventory";
 
 export default function Layout({ children, inventory }) {
   const router = useRouter();
@@ -68,3 +68,24 @@ export default function Layout({ children, inventory }) {
     </GridDiv>
   );
 }
+
+const StyledButton = styled.div`
+  z-index: 99;
+  width: 70px;
+  height: 25px;
+  grid-column: ${(props) => props.column};
+  grid-row: ${(props) => props.row};
+  margin: ${(props) => props.margin};
+`;
+const Grid = styled.div`
+  position: fixed;
+  width: 375px;
+  height: 668px;
+  display: grid;
+  grid-template-columns: repeat(10, 10%);
+  grid-template-rows: repeat(26, 25px);
+`;
+const GridDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;

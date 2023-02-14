@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import IdleAnimation from "@/components/Animations/IdleAnimation";
-import Buy from "@/components/BuyAndSell/Buy";
-import Sell from "@/components/BuyAndSell/Sell";
+import IdleAnimation from "@/components/IdleAnimation";
+import Buy from "@/components/Buy";
+import Sell from "@/components/Sell";
 import Market_BG from "../../images/Maps/Mine_Market_BG.png";
 import BuyVendor from "../../images/Globals/Vendor_Buy.png";
 import SellVendor from "../../images/Globals/Vendor_Sell.png";

@@ -1,5 +1,5 @@
-import Idle1 from "../../images/Character/Idle1.png";
-import Idle2 from "../../images/Character/Idle2.png";
+import Idle1 from "../images/Character/Idle1.png";
+import Idle2 from "../images/Character/Idle2.png";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";

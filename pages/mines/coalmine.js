@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import IdleAnimation from "@/components/Animations/IdleAnimation";
-import MiningAnimation from "@/components/Animations/MiningAnimation";
+import IdleAnimation from "@/components/IdleAnimation";
+import MiningAnimation from "@/components/MiningAnimation";
 import Mine_BG from "../../images/Maps/Mine_Market_BG.png";
 import Coal1 from "../../images/Stones/Coal1.png";
 import Coal2 from "../../images/Stones/Coal2.png";

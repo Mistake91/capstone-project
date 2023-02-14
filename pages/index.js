@@ -2,12 +2,12 @@ import Image from "next/image";
 
 import Home_Frame from "../images/Home/Home_Frame.png";
 
-import Smeltery from "@/components/Smeltery/Smeltery";
-import Anvil from "@/components/Anvil/Anvil";
-import IdleAnimation from "@/components/Animations/IdleAnimation";
-import SmelterAnimation from "@/components/Animations/SmelterAnimation";
-import SmeltAnimation from "@/components/Animations/SmeltAnimation";
-import HammerAnimation from "@/components/Animations/HammerAnimation";
+import Smeltery from "@/components/Smeltery";
+import Anvil from "@/components/Anvil";
+import IdleAnimation from "@/components/IdleAnimation";
+import SmelterAnimation from "@/components/SmelterAnimation";
+import SmeltAnimation from "@/components/SmeltAnimation";
+import HammerAnimation from "@/components/HammerAnimation";
 import {
   StyledDiv,
   CharacterDiv,

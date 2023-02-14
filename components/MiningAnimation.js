@@ -1,12 +1,12 @@
-import Hammer1 from "../../images/Character/Hammer1.png";
-import Hammer2 from "../../images/Character/Hammer2.png";
+import Mining1 from "../images/Character/Pickaxe1.png";
+import Mining2 from "../images/Character/Pickaxe2.png";
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const images = [Hammer1, Hammer2];
+const images = [Mining1, Mining2];
 
-export default function HammerAnimation() {
+export default function MiningAnimation() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
