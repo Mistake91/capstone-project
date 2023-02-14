@@ -35,7 +35,6 @@ export default function App({ Component, pageProps }) {
         setAchiiname(achievement.name);
         const interval = setInterval(() => {
           setNotification("hide");
-          console.log("hallo");
           clearInterval(interval);
         }, 5000);
       }
