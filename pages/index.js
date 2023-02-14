@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styled from "styled-components";
 
 import Home_Frame from "../images/Home/Home_Frame.png";
 
@@ -8,12 +9,6 @@ import IdleAnimation from "@/components/IdleAnimation";
 import SmelterAnimation from "@/components/SmelterAnimation";
 import SmeltAnimation from "@/components/SmeltAnimation";
 import HammerAnimation from "@/components/HammerAnimation";
-import {
-  StyledDiv,
-  CharacterDiv,
-  AnvilStation,
-  SmelterStation,
-} from "./styles/homeStyles";
 
 export default function HomePage({
   inventory,
@@ -96,3 +91,25 @@ export default function HomePage({
     setActivity("idle");
   }
 }
+const StyledDiv = styled.div`
+  z-index: -1;
+  position: fixed;
+`;
+const CharacterDiv = styled.div`
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+  z-index: 2;
+`;
+const SmelterStation = styled.div`
+  width: 125px;
+  height: 200px;
+  grid-row: 4;
+  grid-column: 4;
+  margin-left: 10px;
+`;
+const AnvilStation = styled.div`
+  width: 100px;
+  height: 50px;
+  grid-row: 20;
+  grid-column: 6;
+`;

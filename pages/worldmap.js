@@ -1,7 +1,7 @@
 import Image from "next/image";
+import styled from "styled-components";
 
 import WorldMap from "../images/Maps/Worldmap_BG.png";
-import { WMLink, StyledDiv } from "./styles/worldmapStyles";
 
 export default function Worldmap() {
   return (
@@ -17,3 +17,16 @@ export default function Worldmap() {
     </>
   );
 }
+
+const WMLink = styled.a`
+  width: 100px;
+  height: 60px;
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+  margin-left: 50px;
+`;
+
+const StyledDiv = styled.div`
+  z-index: -1;
+  position: fixed;
+`;

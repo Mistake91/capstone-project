@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import styled from "styled-components";
 
 import IdleAnimation from "@/components/IdleAnimation";
 import Buy from "@/components/Buy";
@@ -8,7 +9,6 @@ import Market_BG from "../images/Maps/Mine_Market_BG.png";
 import BuyVendor from "../images/Globals/Vendor_Buy.png";
 import SellVendor from "../images/Globals/Vendor_Sell.png";
 import Back from "../images/Character/Back.png";
-import { StyledDiv, CharacterDiv, Vendor } from "./styles/marketStyles";
 
 export default function Market({
   inventory,
@@ -79,3 +79,19 @@ export default function Market({
     setCharacterPositon({ row, column });
   }
 }
+const StyledDiv = styled.div`
+  z-index: -1;
+  position: fixed;
+`;
+const CharacterDiv = styled.div`
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+  z-index: 2;
+`;
+const Vendor = styled.div`
+  width: 137px;
+  height: 146px;
+  margin-left: 7px;
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+`;

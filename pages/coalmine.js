@@ -15,7 +15,7 @@ import {
   StyledDiv,
   StyledBGDiv,
   StyledP,
-} from "./styles/mineStyles";
+} from "./goldmine";
 
 export default function Coalmine({
   inventory,
