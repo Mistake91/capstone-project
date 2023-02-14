@@ -1,66 +1,40 @@
 import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
+import { useEffect } from "react";
 
 import GlobalStyle from "@/styles";
 import Layout from "@/components/Layout";
+import { AchievementList } from "@/AchievementList";
+import { InventoryLS } from "../InventoryLS";
 
 export default function App({ Component, pageProps }) {
   const [inventory, setInventory] = useLocalStorageState("inventory", {
-    defaultValue: {
-      coal: { amount: 10, id: "0", name: "coal", worth: 1, identifier: "coal" },
-      ironore: {
-        amount: 10,
-        id: "1",
-        name: "iron ore",
-        worth: 3,
-        identifier: "ironore",
-      },
-      goldore: {
-        amount: 10,
-        id: "2",
-        name: "gold ore",
-        worth: 5,
-        identifier: "goldore",
-      },
-      ironingot: {
-        amount: 10,
-        id: "3",
-        name: "iron ingot",
-        worth: 10,
-        identifier: "ironingot",
-      },
-      goldingot: {
-        amount: 10,
-        id: "4",
-        name: "gold ingot",
-        worth: 15,
-        identifier: "goldingot",
-      },
-      woodstick: {
-        amount: 1,
-        id: "5",
-        name: "wood sticks",
-        worth: 1,
-        price: 2,
-        identifier: "woodstick",
-      },
-      gear: {
-        amount: 1,
-        id: "6",
-        name: "gear",
-        worth: 7,
-        identifier: "gear",
-      },
-      goldarmor: {
-        amount: 1,
-        id: "7",
-        name: "gold armor",
-        worth: 70,
-        identifier: "goldarmor",
-      },
-      dwarfi: { amount: 10, id: "99", name: "dwarfi" },
-    },
+    defaultValue: InventoryLS,
   });
+
+  const [achievements, setAchievements] = useLocalStorageState("achievements", {
+    defaultValue: AchievementList,
+  });
+  const ironIngotAchievements = Object.values(achievements).filter(
+    (achievement) => achievement.material === "ironingot"
+  );
+  const goldIngotAchievements = Object.values(achievements).filter(
+    (achievement) => achievement.material === "goldingot"
+  );
+  useEffect(() => {
+    Object.values(ironIngotAchievements).map((achievement) => {
+      if (inventory.ironingot.overallAmount === achievement.amount) {
+        setAchievements(achievements, (achievement.unlocked = true));
+      }
+    });
+  }, [achievements, ironIngotAchievements, inventory, setAchievements]);
+  useEffect(() => {
+    Object.values(goldIngotAchievements).map((achievement) => {
+      if (inventory.goldingot.overallAmount === achievement.amount) {
+        setAchievements(achievements, (achievement.unlocked = true));
+      }
+    });
+  }, [achievements, goldIngotAchievements, inventory, setAchievements]);
   function smelterIron() {
     setInventory((prevInventory) => {
       const updatedInventory = {
@@ -76,12 +50,12 @@ export default function App({ Component, pageProps }) {
         ironingot: {
           ...prevInventory.ironingot,
           amount: prevInventory.ironingot.amount + 1,
+          overallAmount: prevInventory.ironingot.overallAmount + 1,
         },
       };
       return updatedInventory;
     });
   }
-
   function smelterGold() {
     setInventory((prevInventory) => {
       const updatedInventory = {
@@ -97,6 +71,7 @@ export default function App({ Component, pageProps }) {
         goldingot: {
           ...prevInventory.goldingot,
           amount: prevInventory.goldingot.amount + 1,
+          overallAmount: prevInventory.goldingot.overallAmount + 1,
         },
       };
       return updatedInventory;
@@ -114,6 +89,7 @@ export default function App({ Component, pageProps }) {
         gear: {
           ...prevInventory.gear,
           amount: prevInventory.gear.amount + 2,
+          overallAmount: prevInventory.gear.overallAmount + 2,
         },
       };
       return updatedInventory;
@@ -131,6 +107,7 @@ export default function App({ Component, pageProps }) {
         goldarmor: {
           ...prevInventory.goldarmor,
           amount: prevInventory.goldarmor.amount + 1,
+          overallAmount: prevInventory.goldarmor.overallAmount + 1,
         },
       };
       return updatedInventory;
@@ -153,6 +130,8 @@ export default function App({ Component, pageProps }) {
           smelterGold={smelterGold}
           craftGear={craftGear}
           craftGoldArmor={craftGoldArmor}
+          achievements={achievements}
+          setAchievements={setAchievements}
         />
       </Layout>
     </>
