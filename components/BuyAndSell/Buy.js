@@ -13,7 +13,7 @@ import {
   StyledP,
   StyledDiv,
   StyledWorthP,
-} from "./BuyAndSell.styles";
+} from "./BuyAndSell.styles.js";
 
 export default function Buy({
   inventory,

@@ -10,7 +10,7 @@ import {
   StyledMainP,
   StyledXDiv,
   StyledP,
-} from "./Smeltery.styles";
+} from "./Smeltery.styles.js";
 
 export default function Smeltery({
   inventory,

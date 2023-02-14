@@ -13,7 +13,7 @@ import {
   StyledBackDiv,
   StyledbackP,
   NeedP,
-} from "./Anvil.styles";
+} from "./Anvil.styles.js";
 export default function Anvil({
   inventory,
   stopWorking,

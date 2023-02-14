@@ -9,7 +9,7 @@ import {
   StyledP,
   StyledMoney,
   StyledUL,
-} from "./Inventory.styles";
+} from "./Inventory.styles.js";
 
 export default function Inventory({ inventory }) {
   const filteredInventory = Object.values(inventory).filter(
