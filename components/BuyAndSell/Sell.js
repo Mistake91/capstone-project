@@ -13,7 +13,7 @@ import {
   StyledP,
   StyledDiv,
   StyledWorthP,
-} from "./styles";
+} from "./Styles";
 
 export default function Sell({
   inventory,
