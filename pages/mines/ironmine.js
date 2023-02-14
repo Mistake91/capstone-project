@@ -46,7 +46,7 @@ export default function Ironmine({
             ironore: {
               ...prevInventory.ironore,
               amount: prevInventory.ironore.amount + 1,
-              overallAmount: prevInventory.ironore.amount + 1,
+              overallAmount: prevInventory.ironore.overallAmount + 1,
             },
           };
           return updatedInventory;

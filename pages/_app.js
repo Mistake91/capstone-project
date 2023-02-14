@@ -1,10 +1,8 @@
 import Head from "next/head";
 import useLocalStorageState from "use-local-storage-state";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import GlobalStyle from "@/styles";
 import Layout from "@/components/Layout/Layout";
@@ -28,25 +26,21 @@ export default function App({ Component, pageProps }) {
   const lockedAVS = Object.values(achievements).filter(
     (achievement) => achievement.unlocked === false
   );
-
+  const [notification, setNotification] = useState("");
+  const [achiiname, setAchiiname] = useState("");
   useEffect(() => {
     Object.values(lockedAVS).map((achievement) => {
       if (achievement.unlocked === true) {
-        toast(
-          <StyledDiv>
-            <Image src={UnlockedAV} alt="" />{" "}
-            <StyledP>{achievement.name}</StyledP>
-          </StyledDiv>
-        );
+        setNotification("show");
+        setAchiiname(achievement.name);
+        const interval = setInterval(() => {
+          setNotification("hide");
+          console.log("hallo");
+          clearInterval(interval);
+        }, 5000);
       }
     });
-  }, [
-    achievements,
-    ironIngotAchievements,
-    inventory,
-    setAchievements,
-    lockedAVS,
-  ]);
+  }, [lockedAVS, notification]);
 
   useEffect(() => {
     Object.values(ironIngotAchievements).map((achievement) => {
@@ -152,8 +146,11 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Capstone Project</title>
       </Head>
-
       <Layout inventory={inventory}>
+        <StyledDiv className={notification}>
+          <Image src={UnlockedAV} alt="notification" />
+          <StyledP>{achiiname}</StyledP>
+        </StyledDiv>
         <Component
           {...pageProps}
           inventory={inventory}
@@ -169,34 +166,33 @@ export default function App({ Component, pageProps }) {
           achievements={achievements}
           setAchievements={setAchievements}
         />
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          transition={Slide}
-          toastStyle={{
-            backgroundColor: "transparent",
-            boxShadow: "none",
-            margin: "0 0 0 18%",
-          }}
-        />
       </Layout>
     </>
   );
 }
 const StyledDiv = styled.div`
-  position: relative;
+  z-index: 99;
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  width: 100%;
+  &.show {
+    transition: opacity 1s ease-in-out;
+    top: 2rem;
+    opacity: 1;
+  }
+  &.hide {
+    transition: opacity 1s ease-out;
+    top: 2rem;
+    opacity: 0;
+  }
 `;
 const StyledP = styled.p`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
+  font-size: 10px;
+  top: 40%;
+  left: 40%;
+  text-align: center;
+  width: 120px;
 `;

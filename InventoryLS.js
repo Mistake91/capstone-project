@@ -13,7 +13,7 @@ export const InventoryLS = {
     name: "coal",
     worth: 1,
     identifier: "coal",
-    overallAmount: 999,
+    overallAmount: 99,
     icon: Coal,
   },
   ironore: {
@@ -22,7 +22,7 @@ export const InventoryLS = {
     name: "iron ore",
     worth: 3,
     identifier: "ironore",
-    overallAmount: 99,
+    overallAmount: 9,
     icon: Iron_Ore,
   },
   goldore: {
