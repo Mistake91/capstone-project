@@ -15,17 +15,17 @@ export default function Layout({ children, inventory }) {
   const [inventoryState, setInventoryState] = useState(false);
 
   function worldmapButton() {
-    if (location.pathname === "/worldmap/worldmap") {
+    if (location.pathname === "/worldmap") {
       router.back();
     } else {
-      location.pathname = "/worldmap/worldmap";
+      location.pathname = "/worldmap";
     }
   }
   function achievementButton() {
-    if (location.pathname === "/achievements/achievements") {
+    if (location.pathname === "/achievements") {
       router.back();
     } else {
-      location.pathname = "/achievements/achievements";
+      location.pathname = "/achievements";
     }
   }
   return (

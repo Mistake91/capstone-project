@@ -23,5 +23,5 @@ export default function SmelterAnimation() {
     return () => clearInterval(intervalId);
   }, [currentIndex]);
 
-  return <Image src={images[currentIndex]} alt="Smelter" />;
+  return <Image src={images[currentIndex]} alt="Smelter" priority />;
 }

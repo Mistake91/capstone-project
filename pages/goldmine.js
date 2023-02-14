@@ -3,11 +3,11 @@ import Image from "next/image";
 
 import IdleAnimation from "@/components/IdleAnimation";
 import MiningAnimation from "@/components/MiningAnimation";
-import Mine_BG from "../../images/Maps/Mine_Market_BG.png";
-import Gold1 from "../../images/Stones/Gold1.png";
-import Gold2 from "../../images/Stones/Gold2.png";
-import Gold3 from "../../images/Stones/Gold3.png";
-import GameButton from "../../images/Globals/Button.png";
+import Mine_BG from "../images/Maps/Mine_Market_BG.png";
+import Gold1 from "../images/Stones/Gold1.png";
+import Gold2 from "../images/Stones/Gold2.png";
+import Gold3 from "../images/Stones/Gold3.png";
+import GameButton from "../images/Globals/Button.png";
 import {
   Deposit1,
   Deposit2,
@@ -15,7 +15,7 @@ import {
   StyledDiv,
   StyledBGDiv,
   StyledP,
-} from "./styles";
+} from "./styles/mineStyles";
 
 export default function Goldmine({
   inventory,

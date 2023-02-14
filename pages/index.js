@@ -13,7 +13,7 @@ import {
   CharacterDiv,
   AnvilStation,
   SmelterStation,
-} from "./styles";
+} from "./styles/homeStyles";
 
 export default function HomePage({
   inventory,
@@ -30,7 +30,7 @@ export default function HomePage({
   return (
     <>
       <StyledDiv>
-        <Image src={Home_Frame} alt="Background" />
+        <Image src={Home_Frame} alt="Background" priority />
       </StyledDiv>
       {characterPosition.row === 9 && characterPosition.column === 5 && (
         <Smeltery

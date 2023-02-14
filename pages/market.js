@@ -4,11 +4,11 @@ import Image from "next/image";
 import IdleAnimation from "@/components/IdleAnimation";
 import Buy from "@/components/Buy";
 import Sell from "@/components/Sell";
-import Market_BG from "../../images/Maps/Mine_Market_BG.png";
-import BuyVendor from "../../images/Globals/Vendor_Buy.png";
-import SellVendor from "../../images/Globals/Vendor_Sell.png";
-import Back from "../../images/Character/Back.png";
-import { StyledDiv, CharacterDiv, Vendor } from "./styles";
+import Market_BG from "../images/Maps/Mine_Market_BG.png";
+import BuyVendor from "../images/Globals/Vendor_Buy.png";
+import SellVendor from "../images/Globals/Vendor_Sell.png";
+import Back from "../images/Character/Back.png";
+import { StyledDiv, CharacterDiv, Vendor } from "./styles/marketStyles";
 
 export default function Market({
   inventory,

@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-import BG1 from "../../images/Maps/achievement_BG_1.png";
-import BG2 from "../../images/Maps/achievement_BG_2.png";
-import LockedAV from "../../images/Globals/lockedAchievement.png";
-import UnlockedAV from "../../images/Globals/UnlockedAchievement.png";
+import BG1 from "../images/Maps/achievement_BG_1.png";
+import BG2 from "../images/Maps/achievement_BG_2.png";
+import LockedAV from "../images/Globals/lockedAchievement.png";
+import UnlockedAV from "../images/Globals/UnlockedAchievement.png";
 
 import {
   StyledLi,
@@ -12,7 +12,7 @@ import {
   StyledFrame,
   StyledP,
   StyledDiv,
-} from "./styles";
+} from "./styles/achievementsStyles";
 
 export default function achievementPage({ achievements }) {
   const unlockedAchievements = Object.values(achievements).filter(
