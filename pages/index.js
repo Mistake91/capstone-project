@@ -1,96 +1,115 @@
-import { useState } from "react";
+import Image from "next/image";
 import styled from "styled-components";
 
-import { Station, Character } from "@/components/Station";
+import Home_Frame from "../images/Home/Home_Frame.png";
+
 import Smeltery from "@/components/Smeltery";
 import Anvil from "@/components/Anvil";
+import IdleAnimation from "@/components/IdleAnimation";
+import SmelterAnimation from "@/components/SmelterAnimation";
+import SmeltAnimation from "@/components/SmeltAnimation";
+import HammerAnimation from "@/components/HammerAnimation";
 
 export default function HomePage({
   inventory,
   setInventory,
-  smelterIron,
-  smelterGold,
   craftGear,
   craftGoldArmor,
+  activity,
+  setActivity,
+  characterPosition,
+  setCharacterPositon,
+  setAchievements,
+  achievements,
 }) {
-  const [characterPosition, setCharacterPositon] = useState({
-    row: 9,
-    column: 2,
-  });
-
-  const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
-
   return (
     <>
-      {characterPosition.row === 9 && characterPosition.column === 3 && (
+      <StyledDiv>
+        <Image src={Home_Frame} alt="Background" priority />
+      </StyledDiv>
+      {characterPosition.row === 9 && characterPosition.column === 5 && (
         <Smeltery
           inventory={inventory}
           setInventory={setInventory}
           stopWorking={stopWorking}
-          smelterIron={smelterIron}
-          smelterGold={smelterGold}
+          setActivity={setActivity}
+          setAchievements={setAchievements}
+          achievements={achievements}
         />
       )}
-      {characterPosition.row === 9 && characterPosition.column === 4 && (
+      {characterPosition.row === 20 && characterPosition.column === 6 && (
         <Anvil
           inventory={inventory}
           setInventory={setInventory}
           stopWorking={stopWorking}
           craftGear={craftGear}
           craftGoldArmor={craftGoldArmor}
+          setActivity={setActivity}
         />
       )}
 
-      {isStopButtonVisible && (
-        <StyledButton
-          type="button"
-          row={characterPosition.row + 2}
-          column={characterPosition.column}
-          onClick={() => {
-            setIsStopButtonVisible(false);
-            stopWorking(9, 2);
-          }}
-        >
-          STOP
-        </StyledButton>
-      )}
-
-      <Character
+      <CharacterDiv
         row={characterPosition.row}
         column={characterPosition.column}
+      >
+        {activity === "idle" ? (
+          <IdleAnimation />
+        ) : activity === "smelt" ? (
+          <SmeltAnimation />
+        ) : activity === "hammer" ? (
+          <HammerAnimation />
+        ) : (
+          <IdleAnimation />
+        )}
+      </CharacterDiv>
+
+      <SmelterStation
+        onClick={() => {
+          stopWorking(9, 5);
+          positionHandler(9, 5, setCharacterPositon);
+        }}
+      >
+        <SmelterAnimation />
+      </SmelterStation>
+      <AnvilStation
+        row={20}
+        column={6}
+        onClick={() => {
+          stopWorking(20, 6);
+          positionHandler(20, 6, setCharacterPositon);
+        }}
       />
-      <Station
-        row={9}
-        column={3}
-        onClick={() => {
-          positionHandler(9, 3, setCharacterPositon);
-        }}
-      >
-        smelter
-      </Station>
-      <Station
-        row={9}
-        column={4}
-        onClick={() => {
-          positionHandler(9, 4, setCharacterPositon);
-        }}
-      >
-        anvil
-      </Station>
     </>
   );
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    setIsStopButtonVisible(true);
   }
 
   function stopWorking(row, column) {
     setCharacterPositon({ row, column });
+    setActivity("idle");
   }
 }
-
-const StyledButton = styled.button`
+const StyledDiv = styled.div`
+  z-index: -1;
+  position: fixed;
+`;
+const CharacterDiv = styled.div`
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
+  z-index: 2;
+`;
+const SmelterStation = styled.div`
+  width: 125px;
+  height: 200px;
+  grid-row: 4;
+  grid-column: 4;
+  margin-left: 10px;
+`;
+const AnvilStation = styled.div`
+  width: 100px;
+  height: 50px;
+  grid-row: 20;
+  grid-column: 6;
 `;

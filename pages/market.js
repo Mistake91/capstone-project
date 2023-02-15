@@ -1,90 +1,97 @@
 import { useState } from "react";
+import Image from "next/image";
 import styled from "styled-components";
 
-import { Station, Character } from "@/components/Station";
-import Sell from "@/components/Sell";
+import IdleAnimation from "@/components/IdleAnimation";
 import Buy from "@/components/Buy";
+import Sell from "@/components/Sell";
+import Market_BG from "../images/Maps/Mine_Market_BG.png";
+import BuyVendor from "../images/Globals/Vendor_Buy.png";
+import SellVendor from "../images/Globals/Vendor_Sell.png";
+import Back from "../images/Character/Back.png";
 
-export default function Market({ inventory, setInventory }) {
+export default function Market({
+  inventory,
+  setInventory,
+  setActivity,
+  activity,
+}) {
   const [characterPosition, setCharacterPositon] = useState({
-    row: 9,
-    column: 2,
+    row: 18,
+    column: 5,
   });
-  const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
-
   return (
     <>
-      {isStopButtonVisible && (
-        <StyledStopButton
-          type="button"
-          row={characterPosition.row + 2}
-          column={characterPosition.column}
-          onClick={() => {
-            setIsStopButtonVisible(false);
-            stopWorking(9, 2);
-          }}
-        >
-          STOP
-        </StyledStopButton>
+      <StyledDiv>
+        <Image src={Market_BG} alt="Background" />
+      </StyledDiv>
+      {characterPosition.row === 13 && characterPosition.column === 7 && (
+        <Sell
+          inventory={inventory}
+          setInventory={setInventory}
+          setCharacterPositon={setCharacterPositon}
+          setActivity={setActivity}
+        />
       )}
-      {characterPosition.row === 8 && characterPosition.column === 4 && (
-        <Sell inventory={inventory} setInventory={setInventory} />
-      )}
-      {characterPosition.row === 8 && characterPosition.column === 3 && (
-        <Buy inventory={inventory} setInventory={setInventory} />
+      {characterPosition.row === 13 && characterPosition.column === 3 && (
+        <Buy
+          inventory={inventory}
+          setInventory={setInventory}
+          setCharacterPositon={setCharacterPositon}
+          setActivity={setActivity}
+        />
       )}
 
-      <Character
+      <CharacterDiv
         row={characterPosition.row}
         column={characterPosition.column}
-      />
-      <Station
-        row={8}
-        column={3}
+      >
+        {activity === "vendor" ? (
+          <Image src={Back} alt="Character" />
+        ) : (
+          <IdleAnimation />
+        )}
+      </CharacterDiv>
+      <Vendor
+        row={10}
+        column={2}
         onClick={() => {
-          positionHandler(8, 3);
+          positionHandler(13, 3);
+          setActivity("vendor");
         }}
       >
-        BUY
-      </Station>
-      <Station
-        row={8}
-        column={4}
+        <Image src={BuyVendor} alt="Buy" />
+      </Vendor>
+      <Vendor
+        row={10}
+        column={6}
         onClick={() => {
-          positionHandler(8, 4);
+          positionHandler(13, 7);
+          setActivity("vendor");
         }}
       >
-        SELL
-      </Station>
+        <Image src={SellVendor} alt="Sell" />
+      </Vendor>
     </>
   );
 
   function positionHandler(row, column) {
     setCharacterPositon({ row, column });
-    setIsStopButtonVisible(true);
-  }
-
-  function stopWorking(row, column) {
-    setCharacterPositon({ row, column });
   }
 }
-
-const StyledSection = styled.section`
-  grid-column: 2/6;
-  grid-row: 2/7;
-  background-color: red;
-  border-radius: 10%;
-  display: grid;
-  text-align: center;
+const StyledDiv = styled.div`
+  z-index: -1;
+  position: fixed;
 `;
-
-const StyledButton = styled.button`
-  width: 100px;
-  height: 50px;
-  margin: 0 auto 0 auto;
+const CharacterDiv = styled.div`
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+  z-index: 2;
 `;
-
-const StyledStopButton = styled.button`
+const Vendor = styled.div`
+  width: 137px;
+  height: 146px;
+  margin-left: 7px;
   grid-row: ${(props) => props.row};
   grid-column: ${(props) => props.column};
 `;
