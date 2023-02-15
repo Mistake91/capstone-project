@@ -1,21 +1,7 @@
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import styled from "styled-components";
 
-import IdleAnimation from "@/components/IdleAnimation";
-import MiningAnimation from "@/components/MiningAnimation";
-import Mine_BG from "../images/Maps/Mine_Market_BG.png";
-import Coal1 from "../images/Stones/Coal1.png";
-import Coal2 from "../images/Stones/Coal2.png";
-import Coal3 from "../images/Stones/Coal3.png";
-import GameButton from "../images/Globals/Button.png";
-import {
-  Deposit1,
-  Deposit2,
-  Deposit3,
-  StyledDiv,
-  StyledBGDiv,
-  StyledP,
-} from "./goldmine";
+import { Station, Character } from "@/components/Station";
 
 export default function Coalmine({
   inventory,
@@ -24,8 +10,8 @@ export default function Coalmine({
   setAchievements,
 }) {
   const [characterPosition, setCharacterPositon] = useState({
-    row: 16,
-    column: 3,
+    row: 9,
+    column: 2,
   });
   const [isStopButtonVisible, setIsStopButtonVisible] = useState(false);
   const [isWorking, setIsWorking] = useState(null);
@@ -52,6 +38,7 @@ export default function Coalmine({
           return updatedInventory;
         });
       }, 2000);
+
       return () => clearInterval(interval);
     }
   }, [
@@ -62,61 +49,47 @@ export default function Coalmine({
     setAchievements,
     coalAchievements,
   ]);
-
   return (
     <>
-      <StyledBGDiv>
-        <Image src={Mine_BG} alt="Background" />
-      </StyledBGDiv>
       {isStopButtonVisible && (
-        <>
-          <StyledDiv
-            row={characterPosition.row + 4}
-            column={characterPosition.column}
-            marginleft={"10px"}
-            onClick={() => {
-              setIsStopButtonVisible(false);
-              stopWorking(16, 3);
-            }}
-          >
-            <Image src={GameButton} alt="Button" height={40} />
-          </StyledDiv>
-          <StyledP
-            row={characterPosition.row + 4}
-            column={characterPosition.column}
-          >
-            STOP
-          </StyledP>
-        </>
+        <StyledButton
+          type="button"
+          row={characterPosition.row + 2}
+          column={characterPosition.column}
+          onClick={() => {
+            setIsStopButtonVisible(false);
+            stopWorking(9, 2);
+          }}
+        >
+          STOP
+        </StyledButton>
       )}
 
-      <StyledDiv row={characterPosition.row} column={characterPosition.column}>
-        {isWorking ? <MiningAnimation /> : <IdleAnimation />}
-      </StyledDiv>
-
-      <Deposit1
+      <Character
+        row={characterPosition.row}
+        column={characterPosition.column}
+      />
+      <Station
+        row={3}
+        column={3}
         onClick={() => {
-          positionHandler(19, 6);
+          positionHandler(3, 3);
         }}
-      >
-        <Image src={Coal1} alt="Coal1" />
-      </Deposit1>
-
-      <Deposit2
+      />
+      <Station
+        row={6}
+        column={4}
         onClick={() => {
-          positionHandler(12, 3);
+          positionHandler(6, 4);
         }}
-      >
-        <Image src={Coal2} alt="Coal2" />
-      </Deposit2>
-
-      <Deposit3
+      />
+      <Station
+        row={9}
+        column={3}
         onClick={() => {
-          positionHandler(7, 6);
+          positionHandler(9, 3);
         }}
-      >
-        <Image src={Coal3} alt="Coal3" />
-      </Deposit3>
+      />
     </>
   );
 
@@ -131,3 +104,8 @@ export default function Coalmine({
     setIsWorking(false);
   }
 }
+
+const StyledButton = styled.button`
+  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.column};
+`;

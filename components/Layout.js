@@ -1,12 +1,6 @@
+import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Image from "next/image";
-import styled from "styled-components";
-
-import WorldmapButton from "../images/Globals/WorldmapButton.png";
-import Chest_Closed from "../images/Globals/Chest_Closed.png";
-import Chest_Open from "../images/Globals/Chest_Open.png";
-import Trophy from "../images/Globals/Trophy.png";
 
 import Inventory from "./Inventory";
 
@@ -22,70 +16,66 @@ export default function Layout({ children, inventory }) {
     }
   }
   function achievementButton() {
-    if (location.pathname === "/achievements") {
+    if (location.pathname === "/achievement") {
       router.back();
     } else {
-      location.pathname = "/achievements";
+      location.pathname = "/achievement";
     }
   }
   return (
-    <GridDiv>
-      <Grid>
-        {children}
-        <StyledButton
-          column={1}
-          row={1}
-          margin={"25px 0 0 20px"}
-          onClick={worldmapButton}
-        >
-          <Image src={WorldmapButton} alt="Worldmap" />
-        </StyledButton>
-        <StyledButton
-          column={9}
-          row={1}
-          margin={"25px 0 0 20px"}
-          onClick={achievementButton}
-        >
-          <Image src={Trophy} alt="Achievements" />
-        </StyledButton>
-
-        <StyledButton
-          column={1}
-          row={25}
-          margin={"15px 0 0 20px"}
-          onClick={() => {
-            setInventoryState(!inventoryState);
-          }}
-        >
-          {!inventoryState ? (
-            <Image src={Chest_Closed} alt="Inventory" />
-          ) : (
-            <Image src={Chest_Open} alt="Inventory" />
-          )}
-        </StyledButton>
-        {inventoryState && <Inventory inventory={inventory} />}
-      </Grid>
-    </GridDiv>
+    <Grid>
+      {children}
+      <WorldmapButton type="button" onClick={worldmapButton}>
+        Worldmap
+      </WorldmapButton>
+      <AchievementButton type="button" onClick={achievementButton}>
+        Achievement
+      </AchievementButton>
+      <InventoryButton
+        type="button"
+        onClick={() => {
+          setInventoryState(!inventoryState);
+        }}
+      >
+        Inventory
+      </InventoryButton>
+      {inventoryState ? <Inventory inventory={inventory} /> : null}
+    </Grid>
   );
 }
 
-const StyledButton = styled.div`
-  z-index: 99;
+const WorldmapButton = styled.button`
   width: 70px;
   height: 25px;
-  grid-column: ${(props) => props.column};
-  grid-row: ${(props) => props.row};
-  margin: ${(props) => props.margin};
+  border-radius: 25%;
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 25px;
 `;
+
+const InventoryButton = styled.button`
+  width: 70px;
+  height: 25px;
+  border-radius: 25%;
+  grid-column: 2;
+  grid-row: 13;
+  margin-top: 25px;
+`;
+
+const AchievementButton = styled.button`
+  width: 70px;
+  height: 25px;
+  border-radius: 25%;
+  grid-column: 5;
+  grid-row: 1;
+  margin-top: 25px;
+`;
+
 const Grid = styled.div`
-  position: fixed;
-  width: 375px;
-  height: 668px;
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(10, 10%);
-  grid-template-rows: repeat(26, 25px);
-`;
-const GridDiv = styled.div`
-  display: flex;
-  justify-content: center;
+  column-gap: 4%;
+  grid-template-columns: 1fr repeat(4, 20%) 1fr;
+  grid-template-rows: repeat(13, 50px);
 `;
