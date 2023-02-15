@@ -23,13 +23,13 @@ export default function App({ Component, pageProps }) {
   const goldIngotAchievements = Object.values(achievements).filter(
     (achievement) => achievement.material === "goldingot"
   );
-  const lockedAVS = Object.values(achievements).filter(
+  const lockedAchievements = Object.values(achievements).filter(
     (achievement) => achievement.unlocked === false
   );
   const [notification, setNotification] = useState("");
   const [achievementName, setAchievementName] = useState("");
   useEffect(() => {
-    Object.values(lockedAVS).map((achievement) => {
+    Object.values(lockedAchievements).map((achievement) => {
       if (achievement.unlocked === true) {
         setNotification("show");
         setAchievementName(achievement.name);
@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }) {
         }, 5000);
       }
     });
-  }, [lockedAVS, notification]);
+  }, [lockedAchievements, notification]);
 
   useEffect(() => {
     Object.values(ironIngotAchievements).map((achievement) => {
