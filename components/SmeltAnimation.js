@@ -14,7 +14,7 @@ export default function SmeltAnimation() {
       if (currentIndex === images.length - 1) {
         setCurrentIndex(0);
       } else {
-        setCurrentIndex(currentIndex + 1);
+        setCurrentIndex((currentIndex + 1) % images.length);
       }
     }, 500);
 
