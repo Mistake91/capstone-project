@@ -27,12 +27,12 @@ export default function App({ Component, pageProps }) {
     (achievement) => achievement.unlocked === false
   );
   const [notification, setNotification] = useState("");
-  const [achiiname, setAchiiname] = useState("");
+  const [achievementName, setAchievementName] = useState("");
   useEffect(() => {
     Object.values(lockedAVS).map((achievement) => {
       if (achievement.unlocked === true) {
         setNotification("show");
-        setAchiiname(achievement.name);
+        setAchievementName(achievement.name);
         const interval = setInterval(() => {
           setNotification("hide");
           clearInterval(interval);
@@ -148,7 +148,7 @@ export default function App({ Component, pageProps }) {
       <Layout inventory={inventory}>
         <StyledDiv className={notification}>
           <Image src={UnlockedAV} alt="notification" />
-          <StyledP>{achiiname}</StyledP>
+          <StyledP>{achievementName}</StyledP>
         </StyledDiv>
         <Component
           {...pageProps}
@@ -177,7 +177,6 @@ const StyledDiv = styled.div`
   justify-content: center;
   width: 100%;
   pointer-events: none;
-
   &.show {
     transition: opacity 1s ease-in-out;
     top: 2rem;
