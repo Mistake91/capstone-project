@@ -9,14 +9,31 @@ import XButton from "../images/Globals/XButton.png";
 export default function Smeltery({
   inventory,
   stopWorking,
-  smelterIron,
-  smelterGold,
   setActivity,
+  setAchievements,
+  achievements,
+  setInventory,
 }) {
   const [material, setMaterial] = useState(null);
   const [enough, setEnough] = useState(true);
+  const ironIngotAchievements = Object.values(achievements).filter(
+    (achievement) => achievement.material === "ironingot"
+  );
+  const goldIngotAchievements = Object.values(achievements).filter(
+    (achievement) => achievement.material === "goldingot"
+  );
 
   useEffect(() => {
+    Object.values(ironIngotAchievements).map((achievement) => {
+      if (inventory.ironingot.overallAmount === achievement.amount) {
+        setAchievements(achievements, (achievement.unlocked = true));
+      }
+    });
+    Object.values(goldIngotAchievements).map((achievement) => {
+      if (inventory.goldingot.overallAmount === achievement.amount) {
+        setAchievements(achievements, (achievement.unlocked = true));
+      }
+    });
     if (material) {
       const interval = setInterval(() => {
         if (
@@ -24,13 +41,49 @@ export default function Smeltery({
           inventory.coal.amount > 0 &&
           inventory.ironore.amount > 0
         ) {
-          smelterIron();
+          setInventory((prevInventory) => {
+            const updatedInventory = {
+              ...prevInventory,
+              coal: {
+                ...prevInventory.coal,
+                amount: prevInventory.coal.amount - 1,
+              },
+              ironore: {
+                ...prevInventory.ironore,
+                amount: prevInventory.ironore.amount - 1,
+              },
+              ironingot: {
+                ...prevInventory.ironingot,
+                amount: prevInventory.ironingot.amount + 1,
+                overallAmount: prevInventory.ironingot.overallAmount + 1,
+              },
+            };
+            return updatedInventory;
+          });
         } else if (
           material === "gold" &&
           inventory.coal.amount > 0 &&
           inventory.goldore.amount > 0
         ) {
-          smelterGold();
+          setInventory((prevInventory) => {
+            const updatedInventory = {
+              ...prevInventory,
+              coal: {
+                ...prevInventory.coal,
+                amount: prevInventory.coal.amount - 1,
+              },
+              goldore: {
+                ...prevInventory.goldore,
+                amount: prevInventory.goldore.amount - 1,
+              },
+              goldingot: {
+                ...prevInventory.goldingot,
+                amount: prevInventory.goldingot.amount + 1,
+                overallAmount: prevInventory.goldingot.overallAmount + 1,
+              },
+            };
+            return updatedInventory;
+          });
         }
       }, 3000);
       if (
@@ -45,7 +98,16 @@ export default function Smeltery({
       }
       return () => clearInterval(interval);
     }
-  }, [material, inventory, smelterGold, smelterIron, stopWorking]);
+  }, [
+    material,
+    inventory,
+    stopWorking,
+    achievements,
+    setAchievements,
+    setInventory,
+    ironIngotAchievements,
+    goldIngotAchievements,
+  ]);
 
   return (
     <>

@@ -13,14 +13,14 @@ import HammerAnimation from "@/components/HammerAnimation";
 export default function HomePage({
   inventory,
   setInventory,
-  smelterIron,
-  smelterGold,
   craftGear,
   craftGoldArmor,
   activity,
   setActivity,
   characterPosition,
   setCharacterPositon,
+  setAchievements,
+  achievements,
 }) {
   return (
     <>
@@ -32,9 +32,9 @@ export default function HomePage({
           inventory={inventory}
           setInventory={setInventory}
           stopWorking={stopWorking}
-          smelterIron={smelterIron}
-          smelterGold={smelterGold}
           setActivity={setActivity}
+          setAchievements={setAchievements}
+          achievements={achievements}
         />
       )}
       {characterPosition.row === 20 && characterPosition.column === 6 && (

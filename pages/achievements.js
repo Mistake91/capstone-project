@@ -13,6 +13,7 @@ export default function achievementPage({ achievements }) {
   const lockedAchievements = Object.values(achievements).filter(
     (achievement) => achievement.unlocked === false
   );
+
   return (
     <>
       <StyledBGDiv>
