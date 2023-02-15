@@ -1,19 +1,51 @@
 import Image from "next/image";
 import styled from "styled-components";
+// import { useRouter } from "next/router";
 
 import WorldMap from "../images/Maps/Worldmap_BG.png";
 
 export default function Worldmap() {
+  // const router = useRouter();
   return (
     <>
       <StyledDiv>
         <Image src={WorldMap} alt="Background" />
       </StyledDiv>
-      <WMLink row={5} column={1} href="/" />
-      <WMLink row={14} column={1} href="/coalmine" />
-      <WMLink row={17} column={6} href="/ironmine" />
-      <WMLink row={22} column={2} href="/goldmine" />
-      <WMLink row={9} column={6} href="/market" />
+      <WMLink
+        row={5}
+        column={1}
+        onClick={() => {
+          location.pathname = "/";
+        }}
+      />
+      <WMLink
+        row={14}
+        column={1}
+        onClick={() => {
+          location.pathname = "/coalmine";
+        }}
+      />
+      <WMLink
+        row={17}
+        column={6}
+        onClick={() => {
+          location.pathname = "/ironmine";
+        }}
+      />
+      <WMLink
+        row={22}
+        column={2}
+        onClick={() => {
+          location.pathname = "/goldmine";
+        }}
+      />
+      <WMLink
+        row={9}
+        column={6}
+        onClick={() => {
+          location.pathname = "/market";
+        }}
+      />
     </>
   );
 }
