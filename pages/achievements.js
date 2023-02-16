@@ -53,8 +53,9 @@ const StyledSection = styled.section`
   grid-column: 1/11;
   grid-row: 4/25;
   padding: 50px 0;
-  margin: 10px 45px 0 45px;
+  margin: 10px 0 0 45px;
   text-align: center;
+  overflow-x: hidden;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
